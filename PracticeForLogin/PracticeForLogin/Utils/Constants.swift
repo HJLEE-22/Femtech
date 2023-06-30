@@ -23,6 +23,11 @@ public struct IconNames {
     static let customBackButton = "arrowshape.backward"
     static let customTouchedBackButton = "arrowshape.backward.fill"
     static let plusCircleFill = "plus.circle.fill"
+    static let house = "house"
+    static let houseFill = "house.fill"
+    static let gearshape = "gearshape"
+    static let gearshapeFill = "gearshape.fill"
+    
 }
 
 public struct NotificattionNames {

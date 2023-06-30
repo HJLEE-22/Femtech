@@ -89,10 +89,21 @@ final class FoodViewController: UIViewController {
     
         // MARK: - 데이터매니저 객체를 통한 음식데이터 수신
     private func fetchFoodData(id: String) {
-        FoodDataManager.shared.fetchFood(id: id) { [weak self] foodList in
-            self?.food = foodList
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
+//        FoodDataManager.shared.fetchFood(id: id) { [weak self] foodList in
+//            self?.food = foodList
+//            DispatchQueue.main.async {
+//                self?.tableView.reloadData()
+//            }
+//        }
+        FoodDataManagerAF.shared.fetchFood(id: id) { [weak self] result in
+            switch result {
+            case .success(let foodList):
+                self?.food = foodList
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print("DEBUG: \(error)")
             }
         }
     }
@@ -119,14 +130,18 @@ extension FoodViewController: UITableViewDataSource, UITableViewDelegate {
             return UITableViewCell()
         }
         // food data 존재할 경우 food 데이터에 맞게 변환
-        guard let urlString = food[indexPath.row].thumbnail_url, let url = URL(string: urlString) else { return UITableViewCell() }
-        DispatchQueue.global().async {
-            if let data = try? Data(contentsOf: url) {
-                DispatchQueue.main.async {
-                    cell.foodImageView.image = UIImage(data: data)
-                }
-            }
-        }
+        guard let urlString = food[indexPath.row].thumbnail_url else { return UITableViewCell() }
+        // kingfisher를 이용한 데이터 변환
+        cell.foodImageView.setImage(with: urlString, cashSize: CGSize(width: 200, height: 200))
+        // 기존 코드
+//        guard let urlString = food[indexPath.row].thumbnail_url, let url = URL(string: urlString) else { return UITableViewCell() }
+//        DispatchQueue.global().async {
+//            if let data = try? Data(contentsOf: url) {
+//                DispatchQueue.main.async {
+//                    cell.foodImageView.image = UIImage(data: data)
+//                }
+//            }
+//        }
         cell.foodLabel.text = food[indexPath.row].title
         return cell
     }

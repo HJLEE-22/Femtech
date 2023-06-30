@@ -61,7 +61,6 @@ final class FoodCell: UITableViewCell {
     }
 
     private func setLayout() {
-        
         self.cellFrameView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(20)
         }

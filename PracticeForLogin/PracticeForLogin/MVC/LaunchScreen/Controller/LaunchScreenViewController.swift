@@ -87,13 +87,40 @@ final class LaunchScreenViewController: UIViewController {
     }
     private func selectNavigationController(navigationType: NaviType) {
         if navigationType == .home {
-            let navigation = HomeNavigationController(rootViewController: HomeViewController())
-            navigation.modalPresentationStyle = .fullScreen
-            self.present(navigation, animated: false)
+            let tabBarController = self.setTabBarController()
+            tabBarController.modalPresentationStyle = .fullScreen
+            self.present(tabBarController, animated: false)
         } else if navigationType == .login {
-            let navigation = HomeNavigationController(rootViewController: LoginViewController())
+            let navigation = LoginNavigationController(rootViewController: LoginViewController())
             navigation.modalPresentationStyle = .fullScreen
             self.present(navigation, animated: false)
         }
+    }
+    
+    
+    private func setTabBarController() -> UITabBarController {
+        let tabBarController = UITabBarController()
+        
+        let HomeNavigationContrller = HomeNavigationController(rootViewController: HomeViewController())
+        let SettingNavigationController = SettingNavigationController(rootViewController: SettingViewController())
+        // 컨트롤러 두개 더 추가
+        
+        tabBarController.setViewControllers([HomeNavigationContrller, SettingNavigationController], animated: false)
+        tabBarController.modalPresentationStyle = .fullScreen
+        tabBarController.tabBar.backgroundColor = .mainMintColor
+        tabBarController.tabBar.tintColor = .systemGray3
+        
+        guard let items = tabBarController.tabBar.items else {
+            return UITabBarController()
+        }
+        
+        items[0].image = UIImage(systemName: IconNames.house)
+        items[0].selectedImage = UIImage(systemName: IconNames.houseFill)
+        items[1].image = UIImage(systemName: IconNames.gearshape)
+        items[1].selectedImage = UIImage(systemName: IconNames.gearshapeFill)
+
+        tabBarController.selectedIndex = 0
+        
+        return tabBarController
     }
 }

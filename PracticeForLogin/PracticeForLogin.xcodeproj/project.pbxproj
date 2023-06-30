@@ -45,6 +45,11 @@
 		9BC548572A4D55780059701D /* TouchableOpacityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC548562A4D55780059701D /* TouchableOpacityView.swift */; };
 		9BC548592A4D559A0059701D /* OpacityTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC548582A4D559A0059701D /* OpacityTapGestureRecognizer.swift */; };
 		9BC5485B2A4D56290059701D /* SubNavigationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC5485A2A4D56290059701D /* SubNavigationCell.swift */; };
+		9BC5485D2A4E77030059701D /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC5485C2A4E77030059701D /* UIImageView.swift */; };
+		9BC548642A4E9C050059701D /* SetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC548632A4E9C050059701D /* SetingViewController.swift */; };
+		9BC548662A4E9C740059701D /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC548652A4E9C740059701D /* SettingView.swift */; };
+		9BC548682A4E9DBE0059701D /* SettingNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC548672A4E9DBE0059701D /* SettingNavigationController.swift */; };
+		9BC5486A2A4EA03E0059701D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC548692A4EA03E0059701D /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +114,11 @@
 		9BC548562A4D55780059701D /* TouchableOpacityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchableOpacityView.swift; sourceTree = "<group>"; };
 		9BC548582A4D559A0059701D /* OpacityTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpacityTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		9BC5485A2A4D56290059701D /* SubNavigationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubNavigationCell.swift; sourceTree = "<group>"; };
+		9BC5485C2A4E77030059701D /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		9BC548632A4E9C050059701D /* SetingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetingViewController.swift; sourceTree = "<group>"; };
+		9BC548652A4E9C740059701D /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		9BC548672A4E9DBE0059701D /* SettingNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNavigationController.swift; sourceTree = "<group>"; };
+		9BC548692A4EA03E0059701D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		C47175BC685AFF457FC4125E /* Pods-PracticeForLoginTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PracticeForLoginTests.debug.xcconfig"; path = "Target Support Files/Pods-PracticeForLoginTests/Pods-PracticeForLoginTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C810D9E8C26401CB125DA435 /* Pods-PracticeForLoginTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PracticeForLoginTests.release.xcconfig"; path = "Target Support Files/Pods-PracticeForLoginTests/Pods-PracticeForLoginTests.release.xcconfig"; sourceTree = "<group>"; };
 		D2871911E18C7E331E115AE6 /* Pods-PracticeForLogin-PracticeForLoginUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PracticeForLogin-PracticeForLoginUITests.debug.xcconfig"; path = "Target Support Files/Pods-PracticeForLogin-PracticeForLoginUITests/Pods-PracticeForLogin-PracticeForLoginUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -232,6 +242,7 @@
 				9B36032F2A49651100BE4E0D /* UIButton.swift */,
 				9B8D7D192A4AAAFB00E0473D /* UIColor.swift */,
 				9B8D7D2D2A4BB29D00E0473D /* UIViewController.swift */,
+				9BC5485C2A4E77030059701D /* UIImageView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -277,7 +288,7 @@
 				9B8D7D072A4A6AAF00E0473D /* LaunchScreen */,
 				9B8D7D062A4A6AAB00E0473D /* Login */,
 				9B8D7D1D2A4ACAD700E0473D /* Home */,
-				9B8D7D252A4AD09B00E0473D /* Food */,
+				9BC5485E2A4E9B540059701D /* Setting */,
 			);
 			path = MVC;
 			sourceTree = "<group>";
@@ -305,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				9B8D7D092A4A6BA200E0473D /* LaunchScreenViewController.swift */,
+				9BC548692A4EA03E0059701D /* MainTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -349,6 +361,7 @@
 				9B8D7D1E2A4ACB0E00E0473D /* Model */,
 				9B8D7D202A4ACB1500E0473D /* View */,
 				9B8D7D1F2A4ACB1300E0473D /* Controller */,
+				9B8D7D252A4AD09B00E0473D /* Food */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -415,6 +428,40 @@
 			isa = PBXGroup;
 			children = (
 				9B8D7D312A4C185500E0473D /* Food.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9BC5485E2A4E9B540059701D /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				9BC548622A4E9B800059701D /* Model */,
+				9BC548612A4E9B7D0059701D /* View */,
+				9BC5485F2A4E9B770059701D /* ViewController */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		9BC5485F2A4E9B770059701D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9BC548632A4E9C050059701D /* SetingViewController.swift */,
+				9BC548672A4E9DBE0059701D /* SettingNavigationController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9BC548612A4E9B7D0059701D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9BC548652A4E9C740059701D /* SettingView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9BC548622A4E9B800059701D /* Model */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -669,21 +716,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B3603302A49651100BE4E0D /* UIButton.swift in Sources */,
+				9BC548682A4E9DBE0059701D /* SettingNavigationController.swift in Sources */,
 				9B8D7D1C2A4AB35500E0473D /* Constants.swift in Sources */,
 				9BC548552A4D4D7C0059701D /* SubNavigationView.swift in Sources */,
 				9B8D7D242A4ACBB200E0473D /* HomeView.swift in Sources */,
 				9B1B6FB42A43B72200E1EC53 /* LoginViewController.swift in Sources */,
+				9BC548662A4E9C740059701D /* SettingView.swift in Sources */,
 				9BC5484F2A4D1AE60059701D /* OnlyTableViewController.swift in Sources */,
 				9B8D7D182A4AA8EC00E0473D /* SigninView.swift in Sources */,
 				9BC548572A4D55780059701D /* TouchableOpacityView.swift in Sources */,
+				9BC548642A4E9C050059701D /* SetingViewController.swift in Sources */,
 				9BC5485B2A4D56290059701D /* SubNavigationCell.swift in Sources */,
 				9B8D7D342A4C18F700E0473D /* FoodView.swift in Sources */,
 				9B8D7D362A4C1C0400E0473D /* FoodViewController.swift in Sources */,
 				9BC548532A4D23190059701D /* FoodDetailViewController.swift in Sources */,
 				9B8D7D322A4C185500E0473D /* Food.swift in Sources */,
+				9BC5486A2A4EA03E0059701D /* MainTabBarController.swift in Sources */,
 				9B1B6FB02A43B72200E1EC53 /* AppDelegate.swift in Sources */,
 				9B8D7D2C2A4AD1A300E0473D /* SampleView.swift in Sources */,
 				9B36032B2A49484100BE4E0D /* LoginView.swift in Sources */,
+				9BC5485D2A4E77030059701D /* UIImageView.swift in Sources */,
 				9B8D7D302A4BF7F700E0473D /* HomeNavigationController.swift in Sources */,
 				9B8D7D162A4AA8A100E0473D /* SigninViewController.swift in Sources */,
 				9B8D7D2A2A4AD0ED00E0473D /* SampleViewController.swift in Sources */,

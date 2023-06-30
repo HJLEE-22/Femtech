@@ -13,6 +13,8 @@ final class SigninViewController: UIViewController {
 
     private let signinView = SigninView()
     
+    private var originViewFrameY: CGFloat?
+    
     // MARK: - Lifecycles
 
     override func viewDidLoad() {
@@ -21,12 +23,24 @@ final class SigninViewController: UIViewController {
         self.setNavigationController()
         self.signinView.signInButton.isEnabled = true
     }
-    
     override func loadView() {
         super.loadView()
         self.view = self.signinView
     }
     
+        // MARK: - Keyboard와 화면 up/down 실행
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.signinView.endEditing(true)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addKeyboardNotifications()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeKeyboardNotifications()
+    }
     // MARK: - Helpers
         // MARK: - 내비게이션 설정
 
@@ -67,4 +81,34 @@ final class SigninViewController: UIViewController {
         UserDefaults.standard.setValue(signinView.emailTextField.text, forKey: UserDefaultsKey.UserEmail)
         self.navigationController?.popViewController(animated: true)
     }
+    
+    // MARK: - Keyboard 조정
+    
+    func addKeyboardNotifications(){
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    func removeKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ noti: NSNotification){
+        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            self.originViewFrameY = self.view.frame.origin.y
+            self.view.frame.origin.y -= (keyboardHeight)
+        }
+    }
+
+    @objc func keyboardWillHide(_ noti: NSNotification) {
+        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            self.view.frame.origin.y = originViewFrameY!
+        }
+    }
+
 }

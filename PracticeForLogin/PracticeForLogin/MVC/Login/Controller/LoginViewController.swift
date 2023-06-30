@@ -19,6 +19,7 @@ final class LoginViewController: UIViewController {
         super.viewDidLoad()
         self.addActionToLoginButton()
         self.addActionToSigninButton()
+        self.setTextFieldDelegate()
     }
     
     override func loadView() {
@@ -31,6 +32,11 @@ final class LoginViewController: UIViewController {
         self.setNavigationController()
     }
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        self.loginView.endEditing(true)
+    }
+    
     // MARK: - Heleprs
 
     private func setNavigationController(){
@@ -84,3 +90,13 @@ final class LoginViewController: UIViewController {
 
 }
 
+extension LoginViewController: UITextFieldDelegate {
+    
+    func setTextFieldDelegate() {
+        self.loginView.emailTextField.delegate = self
+        self.loginView.passwordTextField.delegate = self
+    }
+    
+    // 후에 textfield값 처리를 위해...
+    
+}
