@@ -1,0 +1,22 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'PracticeForLogin' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for PracticeForLogin
+
+    pod 'SnapKit', '~> 5.6.0'
+    pod 'lottie-ios', '~> 4.2.0'
+
+  target 'PracticeForLoginTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'PracticeForLoginUITests' do
+    # Pods for testing
+  end
+
+end
