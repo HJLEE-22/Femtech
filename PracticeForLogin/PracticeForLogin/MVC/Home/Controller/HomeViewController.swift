@@ -6,6 +6,7 @@
 //
 
 import SnapKit
+import GoogleSignIn
 
 final class HomeViewController: UIViewController {
     
@@ -34,11 +35,13 @@ final class HomeViewController: UIViewController {
     // MARK: - Helpers
 
     private func setUserNameToLabel() {
-        guard let userName = UserDefaults.standard.value(forKey: UserDefaultsKey.UserName) as? String else {
-            print("DEBUG: No userName in UserDefaults")
+        guard let userName = UserDefaults.standard.value(forKey: UserDefaultsKey.UserName) as? String,
+              let userEmail = UserDefaults.standard.value(forKey: UserDefaultsKey.UserEmail) else {
+            print("DEBUG: No exact user Info in UserDefaults")
             return
         }
         self.homeView.userNameLabel.text = "Welcome \(userName)!"
+        self.homeView.userEmailLabel.text = "\(userEmail)"
     }
     
     private func setNavigationController() {
@@ -74,6 +77,11 @@ final class HomeViewController: UIViewController {
     }
     
     @objc private func doSignout() {
+        
+        if GIDSignIn.sharedInstance.currentUser != nil {
+            GIDSignIn.sharedInstance.signOut()
+        }
+        
         UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.UserExists)
         UserDefaults.standard.removeObject(forKey: UserDefaultsKey.UserName)
         UserDefaults.standard.removeObject(forKey: UserDefaultsKey.UserEmail)
@@ -83,7 +91,4 @@ final class HomeViewController: UIViewController {
         navigation.modalPresentationStyle = .fullScreen
         self.present(navigation, animated: false)
     }
-
-    
-    
 }

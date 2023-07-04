@@ -104,11 +104,6 @@ final class SigninViewController: UIViewController {
     }
 
     @objc func keyboardWillHide(_ noti: NSNotification) {
-        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            self.view.frame.origin.y = originViewFrameY!
-        }
+        self.view.frame.origin.y = originViewFrameY!
     }
-
 }

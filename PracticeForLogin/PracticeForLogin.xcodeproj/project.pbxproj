@@ -37,6 +37,7 @@
 		9B8D7D342A4C18F700E0473D /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D332A4C18F700E0473D /* FoodView.swift */; };
 		9B8D7D362A4C1C0400E0473D /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D352A4C1C0400E0473D /* FoodViewController.swift */; };
 		9B8D7D382A4C1DAF00E0473D /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D372A4C1DAF00E0473D /* FoodCell.swift */; };
+		9BB9C3122A53B8DE00B930E6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB9C3112A53B8DE00B930E6 /* User.swift */; };
 		9BC5484D2A4D04510059701D /* FoodDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC5484C2A4D04510059701D /* FoodDataManager.swift */; };
 		9BC5484F2A4D1AE60059701D /* OnlyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC5484E2A4D1AE60059701D /* OnlyTableViewController.swift */; };
 		9BC548512A4D1B6F0059701D /* OnlyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC548502A4D1B6F0059701D /* OnlyTableView.swift */; };
@@ -106,6 +107,7 @@
 		9B8D7D332A4C18F700E0473D /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 		9B8D7D352A4C1C0400E0473D /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		9B8D7D372A4C1DAF00E0473D /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
+		9BB9C3112A53B8DE00B930E6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9BC5484C2A4D04510059701D /* FoodDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDataManager.swift; sourceTree = "<group>"; };
 		9BC5484E2A4D1AE60059701D /* OnlyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyTableViewController.swift; sourceTree = "<group>"; };
 		9BC548502A4D1B6F0059701D /* OnlyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyTableView.swift; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		9B85A5D12A43E79600076093 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9BB9C3112A53B8DE00B930E6 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -746,6 +749,7 @@
 				9B8D7D382A4C1DAF00E0473D /* FoodCell.swift in Sources */,
 				9BC548512A4D1B6F0059701D /* OnlyTableView.swift in Sources */,
 				9B8D7D142A4AA17600E0473D /* LoginNavigationController.swift in Sources */,
+				9BB9C3122A53B8DE00B930E6 /* User.swift in Sources */,
 				9B8D7D1A2A4AAAFB00E0473D /* UIColor.swift in Sources */,
 				9B8D7D2E2A4BB29D00E0473D /* UIViewController.swift in Sources */,
 				9B8D7D222A4ACB7300E0473D /* HomeViewController.swift in Sources */,
@@ -846,7 +850,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -900,7 +904,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

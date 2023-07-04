@@ -6,20 +6,22 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 final class LoginViewController: UIViewController {
-
+    
     // MARK: - Properties
-
+    
     private let loginView = LoginView()
     
     // MARK: - Lifecycles
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addActionToLoginButton()
         self.addActionToSigninButton()
         self.setTextFieldDelegate()
+        self.addSnsLoginActionsToButtons()
     }
     
     override func loadView() {
@@ -31,20 +33,20 @@ final class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         self.setNavigationController()
     }
-
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         self.loginView.endEditing(true)
     }
     
     // MARK: - Heleprs
-
+    
     private func setNavigationController(){
         self.navigationController?.navigationBar.isHidden = true
     }
     
-        // MARK: - Login 부분
-
+    // MARK: - Email Login (임시)
+    
     private func addActionToLoginButton() {
         self.loginView.loginButton.addTarget(self, action: #selector(moveToMainVC), for: .touchUpInside)
     }
@@ -77,9 +79,62 @@ final class LoginViewController: UIViewController {
         }
         completion(true)
     }
-    
-        // MARK: - Sign Out 부분
 
+    
+    // MARK: - SNS Login part
+    
+    private func addSnsLoginActionsToButtons() {
+        self.loginView.googleSignInButton.addTarget(self, action: #selector(signinWithGoogle), for: .touchUpInside)
+    }
+    
+    func tokenSignIn(idToken: String) {
+        guard let authData = try? JSONEncoder().encode(["idToken": idToken]) else {
+            return
+        }
+        let url = URL(string: "https://yourbackend.example.com/tokensignin")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let task = URLSession.shared.uploadTask(with: request, from: authData) { data, response, error in
+            // Handle response from your backend.
+        }
+        task.resume()
+    }
+    
+        // MARK: - Google sign in
+
+//    let signinConfig = GIDConfiguration.init(clientID: "233574830896-1a2au8pu6htonotrojmgq6fu2bmd1ag9.apps.googleusercontent.com")
+    
+    @objc private func signinWithGoogle() {
+        
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+            guard error == nil, let signInResult else { return }
+            // If sign in succeeded, display the app's main content View.
+            let user = signInResult.user
+            let email = user.profile?.email
+            let fullName = user.profile?.name
+            // let profileImage = user.profile?.imageURL(withDimension: 320)
+            UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
+            UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.UserName)
+            UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.UserEmail)
+            print("DEBUG: user accessToken \(user.accessToken)")
+            print("DEBUG: user idToken \(user.idToken)")
+            print("DEBUG: user refreshToken \(user.refreshToken)")
+            // 로그인 완료되면 메인 화면으로 이동.
+            let navigation = HomeNavigationController(rootViewController: HomeViewController())
+            navigation.modalPresentationStyle = .fullScreen
+            self.present(navigation, animated: false)
+        }
+    }
+    
+    @objc private func signOut() {
+        GIDSignIn.sharedInstance.signOut()
+    }
+    
+    
+    // MARK: - Sign In VC로 이동
+    
     private func addActionToSigninButton() {
         self.loginView.signInButton.addTarget(self, action: #selector(moveToSigninViewController), for: .touchUpInside)
     }
@@ -87,7 +142,8 @@ final class LoginViewController: UIViewController {
     @objc private func moveToSigninViewController() {
         self.navigationController?.pushViewController(SigninViewController(), animated: true)
     }
-
+    
+    
 }
 
 extension LoginViewController: UITextFieldDelegate {

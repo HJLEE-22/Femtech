@@ -19,6 +19,14 @@ final class HomeView: UIView {
         return label
     }()
     
+    lazy var userEmailLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = UIColor.mainMintColor
+        label.text = "sample@gmail.com"
+        label.textAlignment = .center
+        return label
+    }()
+    
     lazy var moveToSampleViewButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Go to scrollView sample", for: .normal)
@@ -71,16 +79,20 @@ final class HomeView: UIView {
     }
 
     private func setSubviews() {
-        [self.userNameLabel,self.moveToFoodDetailButton, self.moveToSampleViewButton, self.moveToOnlyTableButton, self.signoutButton].forEach { self.addSubview($0) }
+        [self.userNameLabel,self.userEmailLabel, self.moveToFoodDetailButton, self.moveToSampleViewButton, self.moveToOnlyTableButton, self.signoutButton].forEach { self.addSubview($0) }
     }
     
     private func setLayout() {
         self.userNameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(300)
+            make.top.equalToSuperview().inset(100)
+            make.left.right.equalToSuperview().inset(100)
+        }
+        self.userEmailLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.userNameLabel.snp.bottom).offset(50)
             make.left.right.equalToSuperview().inset(100)
         }
         self.moveToSampleViewButton.snp.makeConstraints { make in
-            make.top.equalTo(self.userNameLabel.snp.bottom).offset(50)
+            make.top.equalTo(self.userEmailLabel.snp.bottom).offset(50)
             make.left.right.equalToSuperview().inset(100)
         }
         self.moveToFoodDetailButton.snp.makeConstraints { make in
