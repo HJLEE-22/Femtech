@@ -60,9 +60,7 @@ final class LoginViewController: UIViewController {
         self.loginWithEmail { bool in
             if bool {
                 // 로그인 완료되면 메인 화면으로 이동.
-                let navigation = HomeNavigationController(rootViewController: HomeViewController())
-                navigation.modalPresentationStyle = .fullScreen
-                self.present(navigation, animated: false)
+                self.present(MainTabBarController(), animated: false)
             } else {
                 self.showAlert("사용자 정보 없음", "Email을 확인해주세요.", nil)
             }
@@ -126,13 +124,11 @@ final class LoginViewController: UIViewController {
             print("DEBUG: user idToken \(user.idToken)")
             print("DEBUG: user refreshToken \(user.refreshToken)")
             // 로그인 완료되면 메인 화면으로 이동.
-            let navigation = HomeNavigationController(rootViewController: HomeViewController())
-            navigation.modalPresentationStyle = .fullScreen
-            self.present(navigation, animated: false)
+            self.present(MainTabBarController(), animated: false)
         }
     }
     
-    @objc private func signOut() {
+    @objc private func signOutWithGoogle() {
         GIDSignIn.sharedInstance.signOut()
     }
     
@@ -183,8 +179,8 @@ final class LoginViewController: UIViewController {
     
 }
 
+// MARK: - TextField Delegate
 extension LoginViewController: UITextFieldDelegate {
-    
     func setTextFieldDelegate() {
         self.loginView.emailTextField.delegate = self
         self.loginView.passwordTextField.delegate = self

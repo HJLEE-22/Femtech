@@ -20,10 +20,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         self.setNavigationController()
         self.setUserNameToLabel()
-        self.addActionToSampleButton()
-        self.addActionToFoodButton()
-        self.addActionToOnlyTableButton()
-        self.addActionToSignoutButton()
+        self.addActionToButtons()
     }
     
     override func loadView() {
@@ -48,40 +45,29 @@ final class HomeViewController: UIViewController {
         self.navigationItem.title = "Home"
     }
     
-    private func addActionToSampleButton() {
+    private func addActionToButtons() {
         self.homeView.moveToSampleViewButton.addTarget(self, action: #selector(goToSampleViewController), for: .touchUpInside)
+        self.homeView.moveToFoodDetailButton.addTarget(self, action: #selector(goToFoodDetailViewController), for: .touchUpInside)
+        self.homeView.moveToOnlyTableButton.addTarget(self, action: #selector(goToOnlyTableViewController), for: .touchUpInside)
+        self.homeView.signoutButton.addTarget(self, action: #selector(doSignout), for: .touchUpInside)
     }
 
     @objc private func goToSampleViewController() {
         self.navigationController?.pushViewController(SampleViewController(), animated: true)
     }
-    
-    private func addActionToFoodButton() {
-        self.homeView.moveToFoodDetailButton.addTarget(self, action: #selector(goToFoodDetailViewController), for: .touchUpInside)
-    }
 
     @objc private func goToFoodDetailViewController() {
         self.navigationController?.pushViewController(FoodViewController(), animated: true)
-    }
-    
-    private func addActionToOnlyTableButton() {
-        self.homeView.moveToOnlyTableButton.addTarget(self, action: #selector(goToOnlyTableViewController), for: .touchUpInside)
     }
 
     @objc private func goToOnlyTableViewController() {
         self.navigationController?.pushViewController(OnlyTableViewController(), animated: true)
     }
     
-    private func addActionToSignoutButton() {
-        self.homeView.signoutButton.addTarget(self, action: #selector(doSignout), for: .touchUpInside)
-    }
-    
     @objc private func doSignout() {
-        
         if GIDSignIn.sharedInstance.currentUser != nil {
             GIDSignIn.sharedInstance.signOut()
         }
-        
         UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.UserExists)
         UserDefaults.standard.removeObject(forKey: UserDefaultsKey.UserName)
         UserDefaults.standard.removeObject(forKey: UserDefaultsKey.UserEmail)
