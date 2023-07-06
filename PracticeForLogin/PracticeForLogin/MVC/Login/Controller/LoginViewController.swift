@@ -7,6 +7,7 @@
 
 import UIKit
 import GoogleSignIn
+import FBSDKLoginKit
 
 final class LoginViewController: UIViewController {
     
@@ -22,6 +23,7 @@ final class LoginViewController: UIViewController {
         self.addActionToSigninButton()
         self.setTextFieldDelegate()
         self.addSnsLoginActionsToButtons()
+        
     }
     
     override func loadView() {
@@ -58,9 +60,7 @@ final class LoginViewController: UIViewController {
         self.loginWithEmail { bool in
             if bool {
                 // 로그인 완료되면 메인 화면으로 이동.
-                let navigation = HomeNavigationController(rootViewController: HomeViewController())
-                navigation.modalPresentationStyle = .fullScreen
-                self.present(navigation, animated: false)
+                self.present(MainTabBarController(), animated: false)
             } else {
                 self.showAlert("사용자 정보 없음", "Email을 확인해주세요.", nil)
             }
@@ -85,6 +85,8 @@ final class LoginViewController: UIViewController {
     
     private func addSnsLoginActionsToButtons() {
         self.loginView.googleSignInButton.addTarget(self, action: #selector(signinWithGoogle), for: .touchUpInside)
+        self.loginView.appleSignInButton.addTarget(self, action: #selector(signinWithApple), for: .touchUpInside)
+        self.loginView.facebookSignInButton.addTarget(self, action: #selector(signinWithFacebook), for: .touchUpInside)
     }
     
     func tokenSignIn(idToken: String) {
@@ -107,10 +109,10 @@ final class LoginViewController: UIViewController {
 //    let signinConfig = GIDConfiguration.init(clientID: "233574830896-1a2au8pu6htonotrojmgq6fu2bmd1ag9.apps.googleusercontent.com")
     
     @objc private func signinWithGoogle() {
-        
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
             guard error == nil, let signInResult else { return }
             // If sign in succeeded, display the app's main content View.
+            
             let user = signInResult.user
             let email = user.profile?.email
             let fullName = user.profile?.name
@@ -122,16 +124,47 @@ final class LoginViewController: UIViewController {
             print("DEBUG: user idToken \(user.idToken)")
             print("DEBUG: user refreshToken \(user.refreshToken)")
             // 로그인 완료되면 메인 화면으로 이동.
-            let navigation = HomeNavigationController(rootViewController: HomeViewController())
-            navigation.modalPresentationStyle = .fullScreen
-            self.present(navigation, animated: false)
+            self.present(MainTabBarController(), animated: false)
         }
     }
     
-    @objc private func signOut() {
+    @objc private func signOutWithGoogle() {
         GIDSignIn.sharedInstance.signOut()
     }
     
+        // MARK: - Apple Sign In
+    @objc private func signinWithApple(){
+        guard let window = self.view.window else { return }
+        AppleSignInManager.shared.signInWithApple(window: window)
+        
+    }
+    
+        // MARK: - Facebook Sign In
+    @objc private func signinWithFacebook() {
+        guard let window = self.view.window else { return }
+        if let token = AccessToken.current,
+           !token.isExpired {
+            // 로그인 되어있는 경우
+            guard AccessToken.current != nil,
+                  let accessToken: String = AccessToken.current?.tokenString as? String else {
+                    print("DEBUG: no accessToken by facebook login")
+                    return
+            }
+            print("DEBUG: accessToken by facebook login \(accessToken)")
+        } else {
+            // 로그인 요청
+            let fbInstance = FBLoginButton()
+            fbInstance.delegate = self
+            fbInstance.permissions = ["public_profile", "email"]
+            fbInstance.sendActions(for: .touchUpInside)
+        }
+        
+    }
+
+    @objc private func logOutWithFacebook() {
+        let fbLoginManager = LoginManager()
+        fbLoginManager.logOut()
+    }
     
     // MARK: - Sign In VC로 이동
     
@@ -146,13 +179,38 @@ final class LoginViewController: UIViewController {
     
 }
 
+// MARK: - TextField Delegate
 extension LoginViewController: UITextFieldDelegate {
-    
     func setTextFieldDelegate() {
         self.loginView.emailTextField.delegate = self
         self.loginView.passwordTextField.delegate = self
     }
     
     // 후에 textfield값 처리를 위해...
+    
+}
+
+// MARK: - facebook login delegate
+extension LoginViewController: LoginButtonDelegate {
+    func loginButton(_ loginButton: FBSDKLoginKit.FBLoginButton, didCompleteWith result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {
+        if let error = error {
+            //self.delegate?.onError(.facebook, error)
+        } else {
+            if let result = result {
+                let callback = "window.setAccessToken"
+                guard AccessToken.current != nil,
+                      let accessToken: String = AccessToken.current?.tokenString as? String else {
+                    return
+                }
+            }
+        }
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginKit.FBLoginButton) {
+        
+    }
+    
+    
+    
     
 }
