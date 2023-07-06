@@ -85,6 +85,7 @@ final class LoginViewController: UIViewController {
     
     private func addSnsLoginActionsToButtons() {
         self.loginView.googleSignInButton.addTarget(self, action: #selector(signinWithGoogle), for: .touchUpInside)
+        self.loginView.appleSignInButton.addTarget(self, action: #selector(signinWithApple), for: .touchUpInside)
     }
     
     func tokenSignIn(idToken: String) {
@@ -132,6 +133,12 @@ final class LoginViewController: UIViewController {
         GIDSignIn.sharedInstance.signOut()
     }
     
+        // MARK: - Apple Sign In
+    @objc private func signinWithApple(){
+        guard let window = self.view.window else { return }
+        AppleSignInManager.shared.signInWithApple(window: window)
+        
+    }
     
     // MARK: - Sign In VC로 이동
     
