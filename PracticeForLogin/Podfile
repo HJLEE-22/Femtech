@@ -12,6 +12,7 @@ target 'PracticeForLogin' do
     pod 'Alamofire', '~> 5.6.4'
     pod 'Kingfisher', '~> 7.6.2'
     pod 'GoogleSignIn', '~> 7.0.0'
+    pod 'FBSDKLoginKit', '~> 15.1.0'
 
   target 'PracticeForLoginTests' do
     inherit! :search_paths

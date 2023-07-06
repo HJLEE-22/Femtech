@@ -109,6 +109,7 @@
 		9B8D7D352A4C1C0400E0473D /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		9B8D7D372A4C1DAF00E0473D /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		9BB9C3112A53B8DE00B930E6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9BB9C3132A54E5C900B930E6 /* PracticeForLogin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PracticeForLogin.entitlements; sourceTree = "<group>"; };
 		9BB9C3142A54EB5800B930E6 /* AppleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInManager.swift; sourceTree = "<group>"; };
 		9BC5484C2A4D04510059701D /* FoodDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDataManager.swift; sourceTree = "<group>"; };
 		9BC5484E2A4D1AE60059701D /* OnlyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlyTableViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +196,7 @@
 		9B1B6FAE2A43B72200E1EC53 /* PracticeForLogin */ = {
 			isa = PBXGroup;
 			children = (
+				9BB9C3132A54E5C900B930E6 /* PracticeForLogin.entitlements */,
 				9B8D7D0C2A4A7AB400E0473D /* App */,
 				9B8D7D052A4A6AA100E0473D /* MVC */,
 				9B36032C2A494D9500BE4E0D /* APIs */,
@@ -224,6 +226,7 @@
 		9B36032C2A494D9500BE4E0D /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				9BB9C3162A54EB5A00B930E6 /* Auth */,
 				9BC5484C2A4D04510059701D /* FoodDataManager.swift */,
 			);
 			path = APIs;
@@ -435,6 +438,14 @@
 				9B8D7D312A4C185500E0473D /* Food.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9BB9C3162A54EB5A00B930E6 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				9BB9C3142A54EB5800B930E6 /* AppleSignInManager.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		9BC5485E2A4E9B540059701D /* Setting */ = {
@@ -923,15 +934,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PracticeForLogin/PracticeForLogin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 68YVCN8TF9;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PracticeForLogin/Info.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PracticeForLogin/App/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -952,15 +965,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = PracticeForLogin/PracticeForLogin.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 68YVCN8TF9;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PracticeForLogin/Info.plist;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PracticeForLogin/App/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -7,6 +7,8 @@
 
 import UIKit
 import GoogleSignIn
+import AuthenticationServices
+import FBSDKCoreKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -19,10 +21,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        // 첫 시작은 런치스크린으로. 이후 런치스크린에서 로그인 확인 후 내비게이션 분기처리. 
+        // 첫 시작은 런치스크린으로. 이후 런치스크린에서 로그인 확인 후 내비게이션 분기처리.
         window.rootViewController = LaunchScreenViewController()
         window.makeKeyAndVisible()
         self.window = window
+        
+        
+        // google sign in 로그인상태 복원
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+          if error != nil || user == nil {
+            // Show the app's signed-out state.
+              UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.UserExists)
+          } else {
+            // Show the app's signed-in state.
+              UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
+          }
+        }
         
         // apple sign in 로그인상태 복원
         // 우선 apple login 할 때 주어지는 user info(id)를 userDefaults에 넣어두고, 값이 있을 때만 하단 분기처리 진행.
@@ -69,11 +83,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-//
-//    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-//        guard let url = URLContexts.first?.url else { return }
-//            let _ = GIDSignIn.sharedInstance.handle(url)
-//        }
 
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        let _ = GIDSignIn.sharedInstance.handle(url)
+        FBSDKCoreKit.ApplicationDelegate.shared.application(
+            UIApplication.shared,
+            open: url,
+            sourceApplication: nil,
+            annotation: [UIApplication.OpenURLOptionsKey.annotation]
+        )
+    }
 }
 
