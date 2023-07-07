@@ -24,6 +24,7 @@ PODS:
   - GTMSessionFetcher/Core (3.1.1)
   - Kingfisher (7.6.2)
   - lottie-ios (4.2.0)
+  - naveridlogin-sdk-ios (4.1.6)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
@@ -32,6 +33,7 @@ DEPENDENCIES:
   - GoogleSignIn (~> 7.0.0)
   - Kingfisher (~> 7.6.2)
   - lottie-ios (~> 4.2.0)
+  - naveridlogin-sdk-ios (~> 4.1.5)
   - SnapKit (~> 5.6.0)
 
 SPEC REPOS:
@@ -47,6 +49,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - Kingfisher
     - lottie-ios
+    - naveridlogin-sdk-ios
     - SnapKit
 
 SPEC CHECKSUMS:
@@ -61,8 +64,9 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
+  naveridlogin-sdk-ios: cdd34e3585a3d5aaf37c1d84c1f41faba4a25d1a
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 6c4e771ae977734c7919f75846e5273168ac8ac9
+PODFILE CHECKSUM: d5af9ee027c3f24ce9335e79d3db953f1f1533fd
 
 COCOAPODS: 1.12.1

@@ -7,13 +7,34 @@
 
 import UIKit
 import FBSDKCoreKit
+import NaverThirdPartyLogin
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // facebook login 객체 생성
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        // 네이버 로그인 객체 설정
+        let instance = NaverThirdPartyLoginConnection.getSharedInstance()
+        instance?.isNaverAppOauthEnable = true
+        instance?.isInAppOauthEnable = true
+
+        
+//        instance?.serviceUrlScheme = kServiceAppUrlScheme
+//        instance?.consumerKey = kConsumerKey
+//        instance?.consumerSecret = kConsumerSecret
+//        instance?.appName = kServiceAppName
+        
+        // 네이버 아이디로 로그인하기 설정
+        // NaverThirdPartyConstantsForApp.h 파일이 Define된 kServiceAppUrlScheme, kConsumerKey, kConsumerSecret, kServiceAppName의 수정을 읽지 못해 하드코딩
+        instance?.serviceUrlScheme = "practiceforlogin.practiceforlogin"
+        instance?.consumerKey = "2mnNrrBdvbkV81A2GoCC"
+        instance?.consumerSecret = "4WXLaNCAOC"
+        instance?.appName = "PracticeForLogin"
+        
+        
         return true
     }
 

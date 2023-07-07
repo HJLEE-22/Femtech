@@ -9,6 +9,7 @@ import UIKit
 import GoogleSignIn
 import AuthenticationServices
 import FBSDKCoreKit
+import NaverThirdPartyLogin
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -86,13 +87,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else { return }
+        // 구글 로그인 외부페이지로 연결
         let _ = GIDSignIn.sharedInstance.handle(url)
+        // 페이스북 로그인 외부페이지로 연결
         FBSDKCoreKit.ApplicationDelegate.shared.application(
             UIApplication.shared,
             open: url,
             sourceApplication: nil,
             annotation: [UIApplication.OpenURLOptionsKey.annotation]
         )
+        // 네이버 로그인 외부페이지로 연결
+        NaverThirdPartyLoginConnection.getSharedInstance().receiveAccessToken(URLContexts.first?.url)
+        
     }
 }
 
