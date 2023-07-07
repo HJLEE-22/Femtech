@@ -23,7 +23,7 @@
 		9B8D7D0A2A4A6BA200E0473D /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D092A4A6BA200E0473D /* LaunchScreenViewController.swift */; };
 		9B8D7D102A4A7BB700E0473D /* Drop_Pong_yellow.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B8D7D0F2A4A7BB700E0473D /* Drop_Pong_yellow.json */; };
 		9B8D7D142A4AA17600E0473D /* LoginNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D132A4AA17600E0473D /* LoginNavigationController.swift */; };
-		9B8D7D162A4AA8A100E0473D /* SigninViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D152A4AA8A100E0473D /* SigninViewController.swift */; };
+		9B8D7D162A4AA8A100E0473D /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D152A4AA8A100E0473D /* SignInViewController.swift */; };
 		9B8D7D182A4AA8EC00E0473D /* SigninView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D172A4AA8EC00E0473D /* SigninView.swift */; };
 		9B8D7D1A2A4AAAFB00E0473D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D192A4AAAFB00E0473D /* UIColor.swift */; };
 		9B8D7D1C2A4AB35500E0473D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D1B2A4AB35500E0473D /* Constants.swift */; };
@@ -94,7 +94,7 @@
 		9B8D7D092A4A6BA200E0473D /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		9B8D7D0F2A4A7BB700E0473D /* Drop_Pong_yellow.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = Drop_Pong_yellow.json; sourceTree = "<group>"; };
 		9B8D7D132A4AA17600E0473D /* LoginNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNavigationController.swift; sourceTree = "<group>"; };
-		9B8D7D152A4AA8A100E0473D /* SigninViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninViewController.swift; sourceTree = "<group>"; };
+		9B8D7D152A4AA8A100E0473D /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		9B8D7D172A4AA8EC00E0473D /* SigninView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninView.swift; sourceTree = "<group>"; };
 		9B8D7D192A4AAAFB00E0473D /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		9B8D7D1B2A4AB35500E0473D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -285,7 +285,7 @@
 			children = (
 				9B1B6FB32A43B72200E1EC53 /* LoginViewController.swift */,
 				9B8D7D132A4AA17600E0473D /* LoginNavigationController.swift */,
-				9B8D7D152A4AA8A100E0473D /* SigninViewController.swift */,
+				9B8D7D152A4AA8A100E0473D /* SignInViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -753,7 +753,7 @@
 				9B36032B2A49484100BE4E0D /* LoginView.swift in Sources */,
 				9BC5485D2A4E77030059701D /* UIImageView.swift in Sources */,
 				9B8D7D302A4BF7F700E0473D /* HomeNavigationController.swift in Sources */,
-				9B8D7D162A4AA8A100E0473D /* SigninViewController.swift in Sources */,
+				9B8D7D162A4AA8A100E0473D /* SignInViewController.swift in Sources */,
 				9B8D7D2A2A4AD0ED00E0473D /* SampleViewController.swift in Sources */,
 				9BC5484D2A4D04510059701D /* FoodDataManager.swift in Sources */,
 				9BC548592A4D559A0059701D /* OpacityTapGestureRecognizer.swift in Sources */,
