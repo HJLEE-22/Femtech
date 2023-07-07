@@ -40,7 +40,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // apple sign in 로그인상태 복원
         // 우선 apple login 할 때 주어지는 user info(id)를 userDefaults에 넣어두고, 값이 있을 때만 하단 분기처리 진행.
-        if let user = UserDefaults.standard.string(forKey: UserDefaultsKey.AppleUserInfo) {
+        if let user = UserDefaults.standard.string(forKey: UserDefaultsKey.AppleUserIdentifier) {
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             appleIDProvider.getCredentialState(forUserID: user) { (credentialState, error) in
               switch credentialState {

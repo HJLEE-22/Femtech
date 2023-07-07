@@ -20,9 +20,9 @@ final class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addActionToLoginButton()
-        self.addActionToSigninButton()
+        self.addActionToSignInButton()
         self.setTextFieldDelegate()
-        self.addSnsLoginActionsToButtons()
+        self.addActionToSNSLoginButtons()
         
     }
     
@@ -108,7 +108,7 @@ final class LoginViewController: UIViewController {
 
 //    let signinConfig = GIDConfiguration.init(clientID: "233574830896-1a2au8pu6htonotrojmgq6fu2bmd1ag9.apps.googleusercontent.com")
     
-    @objc private func signinWithGoogle() {
+    @objc private func signInWithGoogle() {
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
             guard error == nil, let signInResult else { return }
             // If sign in succeeded, display the app's main content View.
@@ -133,14 +133,14 @@ final class LoginViewController: UIViewController {
     }
     
         // MARK: - Apple Sign In
-    @objc private func signinWithApple(){
+    @objc private func signInWithApple(){
         guard let window = self.view.window else { return }
         AppleSignInManager.shared.signInWithApple(window: window)
         
     }
     
         // MARK: - Facebook Sign In
-    @objc private func signinWithFacebook() {
+    @objc private func signInWithFacebook() {
         guard let window = self.view.window else { return }
         if let token = AccessToken.current,
            !token.isExpired {
@@ -168,12 +168,12 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Sign In VC로 이동
     
-    private func addActionToSigninButton() {
-        self.loginView.signInButton.addTarget(self, action: #selector(moveToSigninViewController), for: .touchUpInside)
+    private func addActionToSignInButton() {
+        self.loginView.signInButton.addTarget(self, action: #selector(moveToSignInViewController), for: .touchUpInside)
     }
     
-    @objc private func moveToSigninViewController() {
-        self.navigationController?.pushViewController(SigninViewController(), animated: true)
+    @objc private func moveToSignInViewController() {
+        self.navigationController?.pushViewController(SignInViewController(), animated: true)
     }
     
     
@@ -195,6 +195,7 @@ extension LoginViewController: LoginButtonDelegate {
     func loginButton(_ loginButton: FBSDKLoginKit.FBLoginButton, didCompleteWith result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {
         if let error = error {
             //self.delegate?.onError(.facebook, error)
+            print("DEBUG: \(error)")
         } else {
             if let result = result {
                 let callback = "window.setAccessToken"
@@ -209,8 +210,5 @@ extension LoginViewController: LoginButtonDelegate {
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginKit.FBLoginButton) {
         
     }
-    
-    
-    
-    
+
 }

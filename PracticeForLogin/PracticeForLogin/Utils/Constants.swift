@@ -14,9 +14,8 @@ public struct UserDefaultsKey {
     static let UserExists = "UserExists"
     static let UserName = "UserName"
     static let UserEmail = "UserEmail"
-    static let AppleUserInfo = "AppleUserInfo"
+    static let AppleUserIdentifier = "AppleUserIdentifier"
 }
-
 
 public struct IconNames {
     private init() {}

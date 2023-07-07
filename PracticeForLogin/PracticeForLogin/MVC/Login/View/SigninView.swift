@@ -1,5 +1,5 @@
 //
-//  SigninView.swift
+//  SignInView.swift
 //  PracticeForLogin
 //
 //  Created by Lee on 2023/06/27.
@@ -7,7 +7,7 @@
 
 import SnapKit
 
-final class SigninView: UIView {
+final class SignInView: UIView {
     
     // MARK: - Properties
 
