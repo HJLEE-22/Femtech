@@ -58,6 +58,7 @@ final class SignInView: UIView {
         textField.placeholder = "이메일을 입력하세요."
         textField.layer.borderColor = .none
         textField.font = UIFont.systemFont(ofSize: 13)
+        textField.textColor = .black
         return textField
     }()
     
@@ -94,6 +95,7 @@ final class SignInView: UIView {
         textField.layer.borderColor = .none
         textField.font = UIFont.systemFont(ofSize: 13)
         textField.isSecureTextEntry = true
+        textField.textColor = .black
         return textField
     }()
     
@@ -128,6 +130,7 @@ final class SignInView: UIView {
         textField.placeholder = "닉네임을 입력하세요."
         textField.layer.borderColor = .none
         textField.font = UIFont.systemFont(ofSize: 13)
+        textField.textColor = .black
         return textField
     }()
     
