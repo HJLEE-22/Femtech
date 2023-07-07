@@ -83,25 +83,10 @@ final class LoginViewController: UIViewController {
     
     // MARK: - SNS Login part
     
-    private func addSnsLoginActionsToButtons() {
-        self.loginView.googleSignInButton.addTarget(self, action: #selector(signinWithGoogle), for: .touchUpInside)
-        self.loginView.appleSignInButton.addTarget(self, action: #selector(signinWithApple), for: .touchUpInside)
-        self.loginView.facebookSignInButton.addTarget(self, action: #selector(signinWithFacebook), for: .touchUpInside)
-    }
-    
-    func tokenSignIn(idToken: String) {
-        guard let authData = try? JSONEncoder().encode(["idToken": idToken]) else {
-            return
-        }
-        let url = URL(string: "https://yourbackend.example.com/tokensignin")!
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let task = URLSession.shared.uploadTask(with: request, from: authData) { data, response, error in
-            // Handle response from your backend.
-        }
-        task.resume()
+    private func addActionToSNSLoginButtons() {
+        self.loginView.googleSignInButton.addTarget(self, action: #selector(signInWithGoogle), for: .touchUpInside)
+        self.loginView.appleSignInButton.addTarget(self, action: #selector(signInWithApple), for: .touchUpInside)
+        self.loginView.facebookSignInButton.addTarget(self, action: #selector(signInWithFacebook), for: .touchUpInside)
     }
     
         // MARK: - Google sign in

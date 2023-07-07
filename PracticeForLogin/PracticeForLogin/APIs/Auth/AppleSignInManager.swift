@@ -40,18 +40,53 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
         let userIdentifier = appleIDCredential.user
         let fullName = appleIDCredential.fullName
         let email = appleIDCredential.email
+        let identityToken = appleIDCredential.identityToken
         print("DEBUG: Apple userIdentifier \(userIdentifier)")
         print("DEBUG: Apple fullName \(fullName)")
         print("DEBUG: Apple email \(email)")
-        UserDefaults.standard.set(userIdentifier, forKey: UserDefaultsKey.AppleUserInfo)
-        UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.UserName)
-        UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.UserEmail)
+        UserDefaults.standard.set(userIdentifier, forKey: UserDefaultsKey.AppleUserIdentifier)
+//        UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.UserName)
+//        UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.UserEmail)
         UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
         
-
-        
+        self.tokenSignIn(idToken: identityToken)
     }
+    
+    // 개발 서버에 토큰 전달
+    
+    func tokenSignIn(idToken: Data?) {
+        guard let data = idToken else {
+            print("DEBUG: No ID token for apple login")
+            return
+        }
+        let url = URL(string: "https://yourbackend.example.com/tokensignin")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
+        let task = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
+            // Handle response from your backend.
+        }
+        task.resume()
+    }
+    
+    /*
+     // token을 String화 해 딕셔너리로 전달 방식
+    func tokenSignIn(idToken: String) {
+        guard let authData = try? JSONEncoder().encode(["idToken": idToken]) else {
+            return
+        }
+        let url = URL(string: "https://yourbackend.example.com/tokensignin")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        let task = URLSession.shared.uploadTask(with: request, from: authData) { data, response, error in
+            // Handle response from your backend.
+        }
+        task.resume()
+    }
+    */
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.

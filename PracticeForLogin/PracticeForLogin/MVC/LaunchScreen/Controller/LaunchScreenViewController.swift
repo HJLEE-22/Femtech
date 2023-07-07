@@ -77,11 +77,14 @@ final class LaunchScreenViewController: UIViewController {
     @objc private func checkLoginIn() {
         guard let isUserExist = UserDefaults.standard.value(forKey: UserDefaultsKey.UserExists) as? Bool else {
             self.selectNavigationController(navigationType: .login)
+            print("DEBUG: no isUserExist")
             return
         }
         if isUserExist {
+            print("DEBUG: isUserExist \(isUserExist)")
             self.selectNavigationController(navigationType: .home)
         } else {
+            print("DEBUG: isUserExist \(isUserExist)")
             self.selectNavigationController(navigationType: .login)
         }
     }
