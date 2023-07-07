@@ -23,7 +23,6 @@ final class LoginViewController: UIViewController {
         self.addActionToSignInButton()
         self.setTextFieldDelegate()
         self.addActionToSNSLoginButtons()
-        
     }
     
     override func loadView() {
@@ -87,6 +86,7 @@ final class LoginViewController: UIViewController {
         self.loginView.googleSignInButton.addTarget(self, action: #selector(signInWithGoogle), for: .touchUpInside)
         self.loginView.appleSignInButton.addTarget(self, action: #selector(signInWithApple), for: .touchUpInside)
         self.loginView.facebookSignInButton.addTarget(self, action: #selector(signInWithFacebook), for: .touchUpInside)
+        self.loginView.naverSignInButton.addTarget(self, action: #selector(logInWithNaver), for: .touchUpInside)
     }
     
         // MARK: - Google sign in
@@ -113,10 +113,6 @@ final class LoginViewController: UIViewController {
         }
     }
     
-    @objc private func signOutWithGoogle() {
-        GIDSignIn.sharedInstance.signOut()
-    }
-    
         // MARK: - Apple Sign In
     @objc private func signInWithApple(){
         guard let window = self.view.window else { return }
@@ -126,29 +122,12 @@ final class LoginViewController: UIViewController {
     
         // MARK: - Facebook Sign In
     @objc private func signInWithFacebook() {
-        guard let window = self.view.window else { return }
-        if let token = AccessToken.current,
-           !token.isExpired {
-            // 로그인 되어있는 경우
-            guard AccessToken.current != nil,
-                  let accessToken: String = AccessToken.current?.tokenString as? String else {
-                    print("DEBUG: no accessToken by facebook login")
-                    return
-            }
-            print("DEBUG: accessToken by facebook login \(accessToken)")
-        } else {
-            // 로그인 요청
-            let fbInstance = FBLoginButton()
-            fbInstance.delegate = self
-            fbInstance.permissions = ["public_profile", "email"]
-            fbInstance.sendActions(for: .touchUpInside)
-        }
-        
+        FacebookLoginManager.shared.logInWithFacebook()
     }
-
-    @objc private func logOutWithFacebook() {
-        let fbLoginManager = LoginManager()
-        fbLoginManager.logOut()
+    
+        // MARK: - Naver Log In
+    @objc private func logInWithNaver() {
+        NaverLoginManager.shared.logIn()
     }
     
     // MARK: - Sign In VC로 이동
@@ -173,27 +152,4 @@ extension LoginViewController: UITextFieldDelegate {
     
     // 후에 textfield값 처리를 위해...
     
-}
-
-// MARK: - facebook login delegate
-extension LoginViewController: LoginButtonDelegate {
-    func loginButton(_ loginButton: FBSDKLoginKit.FBLoginButton, didCompleteWith result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {
-        if let error = error {
-            //self.delegate?.onError(.facebook, error)
-            print("DEBUG: \(error)")
-        } else {
-            if let result = result {
-                let callback = "window.setAccessToken"
-                guard AccessToken.current != nil,
-                      let accessToken: String = AccessToken.current?.tokenString as? String else {
-                    return
-                }
-            }
-        }
-    }
-    
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginKit.FBLoginButton) {
-        
-    }
-
 }
