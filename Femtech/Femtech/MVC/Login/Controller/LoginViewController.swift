@@ -159,7 +159,6 @@ final class LoginViewController: UIViewController {
                     return
                 }
                 self?.setUserInfoByKakao()
-                print("DEBUG: \(oauthToken?.accessToken)")
             }
         } else {
             // kakaotalk이 설치되어있지 않은 경우 openSafariApi로 연결해 진행
@@ -169,7 +168,6 @@ final class LoginViewController: UIViewController {
                     return
                 }
                 self?.setUserInfoByKakao()
-                print("DEBUG: \(oauthToken?.accessToken)")
                 return
             }
         }
@@ -177,11 +175,14 @@ final class LoginViewController: UIViewController {
     
     func setUserInfoByKakao() {
         UserApi.shared.me { [weak self] user, error in
-            guard let email = user?.kakaoAccount?.email else {
+            guard let email = user?.kakaoAccount?.email,
+                  let name = user?.kakaoAccount?.profile?.nickname else {
                 print("DEBUG: kakao email 없음")
                 return
             }
             // 수신한 email 서버에 전달
+            print("DEBUG: kakao email \(email)")
+            UserDefaults.standard.setValue(name, forKey: UserDefaultsKey.userName)
             UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.userEmail)
             UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
             self?.present(MainTabBarController(), animated: false)
