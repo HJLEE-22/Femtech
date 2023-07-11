@@ -11,10 +11,11 @@ import Foundation
 public struct UserDefaultsKey {
     private init(){}
     
-    static let UserExists = "UserExists"
-    static let UserName = "UserName"
-    static let UserEmail = "UserEmail"
-    static let AppleUserIdentifier = "AppleUserIdentifier"
+    static let isUserExists = "isUserExists"
+    static let userName = "userName"
+    static let userEmail = "userEmail"
+    static let appleUserIdentifier = "appleUserIdentifier"
+    static let loginCase = "loginCase"
 }
 
 public struct IconNames {

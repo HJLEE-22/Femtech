@@ -9,6 +9,8 @@ import UIKit
 import GoogleSignIn
 import AuthenticationServices
 import FBSDKCoreKit
+import NaverThirdPartyLogin
+import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -31,24 +33,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
           if error != nil || user == nil {
             // Show the app's signed-out state.
-              UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.UserExists)
+//              UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.isUserExists)
           } else {
             // Show the app's signed-in state.
-              UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
+//              UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
           }
         }
         
         // apple sign in 로그인상태 복원
-        // 우선 apple login 할 때 주어지는 user info(id)를 userDefaults에 넣어두고, 값이 있을 때만 하단 분기처리 진행.
-        if let user = UserDefaults.standard.string(forKey: UserDefaultsKey.AppleUserIdentifier) {
+        // 현재 apple sign in revoke 불가. 우선 주석처리.
+        if let user = UserDefaults.standard.string(forKey: UserDefaultsKey.appleUserIdentifier) {
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             appleIDProvider.getCredentialState(forUserID: user) { (credentialState, error) in
               switch credentialState {
               case .authorized:
-                  UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
+//                  UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
+                  break
               case .revoked, .notFound:
                 // Not Authorization Logic
-                  UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.UserExists)
+//                  UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.isUserExists)
+                  break
               default:
                 break
               }
@@ -86,13 +90,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
         guard let url = URLContexts.first?.url else { return }
+        // 구글 로그인 외부페이지로 연결
         let _ = GIDSignIn.sharedInstance.handle(url)
+        // 페이스북 로그인 외부페이지로 연결
         FBSDKCoreKit.ApplicationDelegate.shared.application(
             UIApplication.shared,
             open: url,
             sourceApplication: nil,
             annotation: [UIApplication.OpenURLOptionsKey.annotation]
         )
+        // 네이버 로그인 외부페이지로 연결
+        NaverThirdPartyLoginConnection.getSharedInstance().receiveAccessToken(URLContexts.first?.url)
+        
+        // 카카오 로그인 외부페이지 연결
+        if (AuthApi.isKakaoTalkLoginUrl(url)) {
+            _ = AuthController.handleOpenUrl(url: url)
+        }
     }
 }
 

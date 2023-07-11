@@ -13,6 +13,11 @@ target 'PracticeForLogin' do
     pod 'Kingfisher', '~> 7.6.2'
     pod 'GoogleSignIn', '~> 7.0.0'
     pod 'FBSDKLoginKit', '~> 15.1.0'
+    pod 'naveridlogin-sdk-ios', '~> 4.1.5'
+    pod 'KakaoSDKCommon', '~> 2.14.0'
+    pod 'KakaoSDKAuth', '~> 2.14.0'
+    pod 'KakaoSDKUser', '~> 2.14.0'
+    pod 'KakaoSDKShare', '~> 2.14.0'
 
   target 'PracticeForLoginTests' do
     inherit! :search_paths

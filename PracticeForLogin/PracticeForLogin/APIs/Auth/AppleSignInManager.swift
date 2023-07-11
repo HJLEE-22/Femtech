@@ -7,6 +7,7 @@
 
 import UIKit
 import AuthenticationServices
+import Alamofire
 
 final class AppleSignInManager: NSObject {
  
@@ -26,40 +27,50 @@ final class AppleSignInManager: NSObject {
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
+    
+    func signOut() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        
+    }
 }
 
-// apple 로그인 성공 후 처리 내역
+// MARK: - ASAuthorizationControllerDelegate
 extension AppleSignInManager: ASAuthorizationControllerDelegate {
+    // apple 로그인 성공 후 처리 내역
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        
         // ASAuthorizationAppleIDCredential은 비밀번호 및 페이스ID 인증
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
             // error handling은 밑 메서드에서 진행
             return
         }
         let userIdentifier = appleIDCredential.user
-        let fullName = appleIDCredential.fullName
-        let email = appleIDCredential.email
+        // appleIDCredential.fullName은 PersonNameComponents 타입. 직접 초기화는 iOS15부터 가능. nil 코얼레싱 값을 주기 위해 givenName으로 작업.
+        let fullName = appleIDCredential.fullName?.givenName ?? "no name"
+        let email = appleIDCredential.email ?? "no email"
         let identityToken = appleIDCredential.identityToken
         print("DEBUG: Apple userIdentifier \(userIdentifier)")
         print("DEBUG: Apple fullName \(fullName)")
         print("DEBUG: Apple email \(email)")
-        UserDefaults.standard.set(userIdentifier, forKey: UserDefaultsKey.AppleUserIdentifier)
-//        UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.UserName)
-//        UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.UserEmail)
-        UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
+        UserDefaults.standard.set(userIdentifier, forKey: UserDefaultsKey.appleUserIdentifier)
+        UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.userName)
+        UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.userEmail)
+        UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
+        if let viewController = UIApplication.topViewController() {
+            viewController.present(MainTabBarController(), animated: false)
+        }
         
         self.tokenSignIn(idToken: identityToken)
     }
     
     // 개발 서버에 토큰 전달
-    
     func tokenSignIn(idToken: Data?) {
         guard let data = idToken else {
             print("DEBUG: No ID token for apple login")
             return
         }
-        let url = URL(string: "https://yourbackend.example.com/tokensignin")!
+        guard let url = URL(string: "https://yourbackend.example.com/tokensignin") else {
+            print("DEBUG: apple sign in url error / https://yourbackend.example.com/tokensignin")
+            return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -69,6 +80,7 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
         }
         task.resume()
     }
+    
     
     /*
      // token을 String화 해 딕셔너리로 전달 방식
@@ -88,13 +100,46 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
     }
     */
     
+    /*
+     // 회원탈퇴 시 token revoke 필수
+    func revokeAppleToken(clientSecret: String, token: String, completionHandler: @escaping () -> Void) {
+        let url = "https://appleid.apple.com/auth/revoke?client_id=YOUR_BUNDLE_ID&client_secret=\(clientSecret)&token=\(token)&token_type_hint=refresh_token"
+        let header: HTTPHeaders = ["Content-Type": "application/x-www-form-urlencoded"]
+        AF.request(url,
+                   method: .post,
+                   headers: header)
+        .validate(statusCode: 200..<600)
+        .responseData { response in
+            guard let statusCode = response.response?.statusCode else { return }
+            if statusCode == 200 {
+                print("애플 토큰 삭제 성공!")
+                completionHandler()
+            }
+        }
+    }
+     */
+    
+    // MARK: - 애플 엑세스 토큰 발급 응답 모델
+    struct AppleTokenResponse: Codable {
+        var access_token: String?
+        var token_type: String?
+        var expires_in: Int?
+        var refresh_token: String?
+        var id_token: String?
+
+        enum CodingKeys: String, CodingKey {
+            case refresh_token = "refresh_token"
+        }
+    }
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
         print("Sign in with Apple errored: \(error)")
     }
 }
-// 애플로그인 윈도우창
+// MARK: - ASAuthorizationControllerPresentationContextProviding
 extension AppleSignInManager: ASAuthorizationControllerPresentationContextProviding {
+    // 애플로그인 윈도우창
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return window ?? UIWindow()
     }

@@ -8,6 +8,18 @@
 import UIKit
 import GoogleSignIn
 import FBSDKLoginKit
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
+
+enum LogInCase: String {
+    case apple
+    case email
+    case facebook
+    case google
+    case kakao
+    case naver
+}
 
 final class LoginViewController: UIViewController {
     
@@ -23,7 +35,6 @@ final class LoginViewController: UIViewController {
         self.addActionToSignInButton()
         self.setTextFieldDelegate()
         self.addActionToSNSLoginButtons()
-        
     }
     
     override func loadView() {
@@ -47,7 +58,7 @@ final class LoginViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    // MARK: - Email Login (임시)
+    // MARK: - Email Login part (임시)
     
     private func addActionToLoginButton() {
         self.loginView.loginButton.addTarget(self, action: #selector(moveToMainVC), for: .touchUpInside)
@@ -61,6 +72,7 @@ final class LoginViewController: UIViewController {
             if bool {
                 // 로그인 완료되면 메인 화면으로 이동.
                 self.present(MainTabBarController(), animated: false)
+                UserDefaults.standard.setValue(LogInCase.email.rawValue, forKey: UserDefaultsKey.loginCase)
             } else {
                 self.showAlert("사용자 정보 없음", "Email을 확인해주세요.", nil)
             }
@@ -72,8 +84,8 @@ final class LoginViewController: UIViewController {
         guard let email = self.loginView.emailTextField.text, let password = self.loginView.passwordTextField.text else { return }
         print("email \(email), password \(password)")
         // 본래 login api를 통해 로그인 시도 결과값 리턴하는 부분
-        guard UserDefaults.standard.value(forKey: UserDefaultsKey.UserEmail) as? String == self.loginView.emailTextField.text else {
-            print("DEBUG: \(UserDefaults.standard.value(forKey: UserDefaultsKey.UserEmail))")
+        guard UserDefaults.standard.value(forKey: UserDefaultsKey.userEmail) as? String == self.loginView.emailTextField.text else {
+            print("DEBUG: \(UserDefaults.standard.value(forKey: UserDefaultsKey.userEmail))")
             completion(false)
             return
         }
@@ -87,6 +99,8 @@ final class LoginViewController: UIViewController {
         self.loginView.googleSignInButton.addTarget(self, action: #selector(signInWithGoogle), for: .touchUpInside)
         self.loginView.appleSignInButton.addTarget(self, action: #selector(signInWithApple), for: .touchUpInside)
         self.loginView.facebookSignInButton.addTarget(self, action: #selector(signInWithFacebook), for: .touchUpInside)
+        self.loginView.naverSignInButton.addTarget(self, action: #selector(logInWithNaver), for: .touchUpInside)
+        self.loginView.kakaoSignInButton.addTarget(self, action: #selector(logInWithKakao), for: .touchUpInside)
     }
     
         // MARK: - Google sign in
@@ -102,53 +116,77 @@ final class LoginViewController: UIViewController {
             let email = user.profile?.email
             let fullName = user.profile?.name
             // let profileImage = user.profile?.imageURL(withDimension: 320)
-            UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
-            UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.UserName)
-            UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.UserEmail)
+            UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
+            UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.userName)
+            UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.userEmail)
             print("DEBUG: user accessToken \(user.accessToken)")
             print("DEBUG: user idToken \(user.idToken)")
             print("DEBUG: user refreshToken \(user.refreshToken)")
             // 로그인 완료되면 메인 화면으로 이동.
             self.present(MainTabBarController(), animated: false)
+            UserDefaults.standard.setValue(LogInCase.google.rawValue, forKey: UserDefaultsKey.loginCase)
         }
-    }
-    
-    @objc private func signOutWithGoogle() {
-        GIDSignIn.sharedInstance.signOut()
     }
     
         // MARK: - Apple Sign In
     @objc private func signInWithApple(){
         guard let window = self.view.window else { return }
         AppleSignInManager.shared.signInWithApple(window: window)
+        UserDefaults.standard.setValue(LogInCase.apple.rawValue, forKey: UserDefaultsKey.loginCase)
         
     }
     
         // MARK: - Facebook Sign In
     @objc private func signInWithFacebook() {
-        guard let window = self.view.window else { return }
-        if let token = AccessToken.current,
-           !token.isExpired {
-            // 로그인 되어있는 경우
-            guard AccessToken.current != nil,
-                  let accessToken: String = AccessToken.current?.tokenString as? String else {
-                    print("DEBUG: no accessToken by facebook login")
-                    return
-            }
-            print("DEBUG: accessToken by facebook login \(accessToken)")
-        } else {
-            // 로그인 요청
-            let fbInstance = FBLoginButton()
-            fbInstance.delegate = self
-            fbInstance.permissions = ["public_profile", "email"]
-            fbInstance.sendActions(for: .touchUpInside)
-        }
-        
+        FacebookLoginManager.shared.logInWithFacebook()
+        UserDefaults.standard.setValue(LogInCase.facebook.rawValue, forKey: UserDefaultsKey.loginCase)
     }
-
-    @objc private func logOutWithFacebook() {
-        let fbLoginManager = LoginManager()
-        fbLoginManager.logOut()
+    
+        // MARK: - Naver Log In
+    @objc private func logInWithNaver() {
+        NaverLoginManager.shared.logIn()
+        UserDefaults.standard.setValue(LogInCase.naver.rawValue, forKey: UserDefaultsKey.loginCase)
+    }
+    
+        // MARK: - Kakao Log In
+    @objc private func logInWithKakao() {
+        // kakaotalk이 설치되어 있을 경우
+        if (UserApi.isKakaoTalkLoginAvailable()) {
+            UserApi.shared.loginWithKakaoTalk { [weak self] (oauthToken, error) in
+                guard error == nil else {
+                    print("DEBUG: \(error!)")
+                    // 카카오톡이 설치되어 있지만 로그인되지 않은 경우 에러 발생 가능성 존재
+                    return
+                }
+                self?.setUserInfoByKakao()
+                print("DEBUG: \(oauthToken?.accessToken)")
+            }
+        } else {
+            // kakaotalk이 설치되어있지 않은 경우 openSafariApi로 연결해 진행
+            UserApi.shared.loginWithKakaoAccount { [weak self] oauthToken, error in
+                guard error == nil else {
+                    print("DEBUG: \(error!)")
+                    return
+                }
+                self?.setUserInfoByKakao()
+                print("DEBUG: \(oauthToken?.accessToken)")
+                return
+            }
+        }
+    }
+    
+    func setUserInfoByKakao() {
+        UserApi.shared.me { [weak self] user, error in
+            guard let email = user?.kakaoAccount?.email else {
+                print("DEBUG: kakao email 없음")
+                return
+            }
+            // 수신한 email 서버에 전달
+            UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.userEmail)
+            UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
+            self?.present(MainTabBarController(), animated: false)
+            UserDefaults.standard.setValue(LogInCase.kakao.rawValue, forKey: UserDefaultsKey.loginCase)
+        }
     }
     
     // MARK: - Sign In VC로 이동
@@ -160,8 +198,6 @@ final class LoginViewController: UIViewController {
     @objc private func moveToSignInViewController() {
         self.navigationController?.pushViewController(SignInViewController(), animated: true)
     }
-    
-    
 }
 
 // MARK: - TextField Delegate
@@ -173,27 +209,4 @@ extension LoginViewController: UITextFieldDelegate {
     
     // 후에 textfield값 처리를 위해...
     
-}
-
-// MARK: - facebook login delegate
-extension LoginViewController: LoginButtonDelegate {
-    func loginButton(_ loginButton: FBSDKLoginKit.FBLoginButton, didCompleteWith result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {
-        if let error = error {
-            //self.delegate?.onError(.facebook, error)
-            print("DEBUG: \(error)")
-        } else {
-            if let result = result {
-                let callback = "window.setAccessToken"
-                guard AccessToken.current != nil,
-                      let accessToken: String = AccessToken.current?.tokenString as? String else {
-                    return
-                }
-            }
-        }
-    }
-    
-    func loginButtonDidLogOut(_ loginButton: FBSDKLoginKit.FBLoginButton) {
-        
-    }
-
 }
