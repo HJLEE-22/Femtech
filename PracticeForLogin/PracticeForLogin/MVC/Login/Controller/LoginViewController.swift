@@ -8,6 +8,18 @@
 import UIKit
 import GoogleSignIn
 import FBSDKLoginKit
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
+
+enum LogInCase: String {
+    case apple
+    case email
+    case facebook
+    case google
+    case kakao
+    case naver
+}
 
 final class LoginViewController: UIViewController {
     
@@ -46,7 +58,7 @@ final class LoginViewController: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    // MARK: - Email Login (임시)
+    // MARK: - Email Login part (임시)
     
     private func addActionToLoginButton() {
         self.loginView.loginButton.addTarget(self, action: #selector(moveToMainVC), for: .touchUpInside)
@@ -60,6 +72,7 @@ final class LoginViewController: UIViewController {
             if bool {
                 // 로그인 완료되면 메인 화면으로 이동.
                 self.present(MainTabBarController(), animated: false)
+                UserDefaults.standard.setValue(LogInCase.email.rawValue, forKey: UserDefaultsKey.loginCase)
             } else {
                 self.showAlert("사용자 정보 없음", "Email을 확인해주세요.", nil)
             }
@@ -71,8 +84,8 @@ final class LoginViewController: UIViewController {
         guard let email = self.loginView.emailTextField.text, let password = self.loginView.passwordTextField.text else { return }
         print("email \(email), password \(password)")
         // 본래 login api를 통해 로그인 시도 결과값 리턴하는 부분
-        guard UserDefaults.standard.value(forKey: UserDefaultsKey.UserEmail) as? String == self.loginView.emailTextField.text else {
-            print("DEBUG: \(UserDefaults.standard.value(forKey: UserDefaultsKey.UserEmail))")
+        guard UserDefaults.standard.value(forKey: UserDefaultsKey.userEmail) as? String == self.loginView.emailTextField.text else {
+            print("DEBUG: \(UserDefaults.standard.value(forKey: UserDefaultsKey.userEmail))")
             completion(false)
             return
         }
@@ -103,14 +116,15 @@ final class LoginViewController: UIViewController {
             let email = user.profile?.email
             let fullName = user.profile?.name
             // let profileImage = user.profile?.imageURL(withDimension: 320)
-            UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
-            UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.UserName)
-            UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.UserEmail)
+            UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
+            UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.userName)
+            UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.userEmail)
             print("DEBUG: user accessToken \(user.accessToken)")
             print("DEBUG: user idToken \(user.idToken)")
             print("DEBUG: user refreshToken \(user.refreshToken)")
             // 로그인 완료되면 메인 화면으로 이동.
             self.present(MainTabBarController(), animated: false)
+            UserDefaults.standard.setValue(LogInCase.google.rawValue, forKey: UserDefaultsKey.loginCase)
         }
     }
     
@@ -118,17 +132,22 @@ final class LoginViewController: UIViewController {
     @objc private func signInWithApple(){
         guard let window = self.view.window else { return }
         AppleSignInManager.shared.signInWithApple(window: window)
+        UserDefaults.standard.setValue(LogInCase.apple.rawValue, forKey: UserDefaultsKey.loginCase)
         
     }
     
         // MARK: - Facebook Sign In
     @objc private func signInWithFacebook() {
         FacebookLoginManager.shared.logInWithFacebook()
+        UserDefaults.standard.setValue(LogInCase.facebook.rawValue, forKey: UserDefaultsKey.loginCase)
     }
     
         // MARK: - Naver Log In
     @objc private func logInWithNaver() {
         NaverLoginManager.shared.logIn()
+        UserDefaults.standard.setValue(LogInCase.naver.rawValue, forKey: UserDefaultsKey.loginCase)
+    }
+    
         // MARK: - Kakao Log In
     @objc private func logInWithKakao() {
         // kakaotalk이 설치되어 있을 경우
@@ -179,8 +198,6 @@ final class LoginViewController: UIViewController {
     @objc private func moveToSignInViewController() {
         self.navigationController?.pushViewController(SignInViewController(), animated: true)
     }
-    
-    
 }
 
 // MARK: - TextField Delegate
