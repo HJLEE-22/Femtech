@@ -44,16 +44,20 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
             return
         }
         let userIdentifier = appleIDCredential.user
-        let fullName = appleIDCredential.fullName
-        let email = appleIDCredential.email
+        // appleIDCredential.fullName은 PersonNameComponents 타입. 직접 초기화는 iOS15부터 가능. nil 코얼레싱 값을 주기 위해 givenName으로 작업.
+        let fullName = appleIDCredential.fullName?.givenName ?? "no name"
+        let email = appleIDCredential.email ?? "no email"
         let identityToken = appleIDCredential.identityToken
         print("DEBUG: Apple userIdentifier \(userIdentifier)")
         print("DEBUG: Apple fullName \(fullName)")
         print("DEBUG: Apple email \(email)")
         UserDefaults.standard.set(userIdentifier, forKey: UserDefaultsKey.appleUserIdentifier)
-//        UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.userName)
-//        UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.userEmail)
+        UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.userName)
+        UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.userEmail)
         UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
+        if let viewController = UIApplication.topViewController() {
+            viewController.present(MainTabBarController(), animated: false)
+        }
         
         self.tokenSignIn(idToken: identityToken)
     }

@@ -33,6 +33,14 @@ final class LaunchScreenViewController: UIViewController {
         self.addAnimation()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkLoginIn),
+                                               name: NotificattionNames.userLogin,
+                                               object: nil)
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: NotificattionNames.userLogin, object: nil)
@@ -60,7 +68,6 @@ final class LaunchScreenViewController: UIViewController {
             UIView.animate(withDuration: 0.3, animations: { self.animationView.alpha = 0 }) { _ in
                 self.animationView.isHidden = true
                 self.animationView.removeFromSuperview()
-                self.registerAuthStateDidChangeEvent()
                 NotificationCenter.default.post(name: NotificattionNames.userLogin, object: nil)
             }
         }
@@ -68,12 +75,6 @@ final class LaunchScreenViewController: UIViewController {
     
         // MARK: - 계정 로그인 상태 확인 부분
 
-    private func registerAuthStateDidChangeEvent() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(checkLoginIn),
-                                               name: NotificattionNames.userLogin,
-                                               object: nil)
-    }
     @objc private func checkLoginIn() {
         guard let isUserExist = UserDefaults.standard.value(forKey: UserDefaultsKey.isUserExists) as? Bool else {
             self.selectNavigationController(navigationType: .login)

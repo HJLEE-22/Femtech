@@ -31,7 +31,7 @@ final class NaverLoginManager: NSObject {
     private var failure: ((_ error: AFError) -> Void)? = { error in
         print(error.localizedDescription)
         if let viewController = UIApplication.topViewController(base: nil) {
-            viewController.showAlert("네이버 SNS 로그인 실패", "이유: \(String(error.localizedDescription))\n문제가 반복된다면 관리자에게 문의하세요.", nil)
+            viewController.showAlert("네이버 유저 데이터 로드 실패", "이유: \(String(error.localizedDescription))\n문제가 반복된다면 관리자에게 문의하세요.", nil)
         }
     }
     // MARK: - Helpers
@@ -119,11 +119,17 @@ extension NaverLoginManager: NaverThirdPartyLoginConnectionDelegate {
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
         print("네이버 로그인 성공")
         self.getInfo()
+        if let viewController = UIApplication.topViewController() {
+            viewController.present(MainTabBarController(), animated: false)
+        }
     }
     // 토큰 갱신 성공 시 호출 됨
     func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
         print("네이버 토큰 갱신 성공")
         self.getInfo()
+        if let viewController = UIApplication.topViewController() {
+            viewController.present(MainTabBarController(), animated: false)
+        }
     }
     // 연동해제 성공한 경우 호출 됨
     func oauth20ConnectionDidFinishDeleteToken() {
