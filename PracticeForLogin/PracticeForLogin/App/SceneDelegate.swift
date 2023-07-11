@@ -33,24 +33,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
           if error != nil || user == nil {
             // Show the app's signed-out state.
-              UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.UserExists)
+              UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.isUserExists)
           } else {
             // Show the app's signed-in state.
-              UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
+              UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
           }
         }
         
         // apple sign in 로그인상태 복원
         // 우선 apple login 할 때 주어지는 user info(id)를 userDefaults에 넣어두고, 값이 있을 때만 하단 분기처리 진행.
-        if let user = UserDefaults.standard.string(forKey: UserDefaultsKey.AppleUserIdentifier) {
+        if let user = UserDefaults.standard.string(forKey: UserDefaultsKey.appleUserIdentifier) {
             let appleIDProvider = ASAuthorizationAppleIDProvider()
             appleIDProvider.getCredentialState(forUserID: user) { (credentialState, error) in
               switch credentialState {
               case .authorized:
-                  UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
+                  UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
               case .revoked, .notFound:
                 // Not Authorization Logic
-                  UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.UserExists)
+                  UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.isUserExists)
               default:
                 break
               }

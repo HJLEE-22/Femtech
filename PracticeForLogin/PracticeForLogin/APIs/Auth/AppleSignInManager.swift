@@ -50,10 +50,10 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
         print("DEBUG: Apple userIdentifier \(userIdentifier)")
         print("DEBUG: Apple fullName \(fullName)")
         print("DEBUG: Apple email \(email)")
-        UserDefaults.standard.set(userIdentifier, forKey: UserDefaultsKey.AppleUserIdentifier)
-//        UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.UserName)
-//        UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.UserEmail)
-        UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
+        UserDefaults.standard.set(userIdentifier, forKey: UserDefaultsKey.appleUserIdentifier)
+//        UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.userName)
+//        UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.userEmail)
+        UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
         
         self.tokenSignIn(idToken: identityToken)
     }

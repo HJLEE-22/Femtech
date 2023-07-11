@@ -20,9 +20,9 @@ final class NaverLoginManager: NSObject {
     
     //네이버 로그인 API로 유저 데이터 페치 성공시 처리
     private var success: ((_ loginData: NaverLoginModel) -> Void)? = { loginData in
-        UserDefaults.standard.setValue(loginData.response.email, forKey: UserDefaultsKey.UserEmail)
-        UserDefaults.standard.setValue(loginData.response.name, forKey: UserDefaultsKey.UserName)
-        UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
+        UserDefaults.standard.setValue(loginData.response.email, forKey: UserDefaultsKey.userEmail)
+        UserDefaults.standard.setValue(loginData.response.name, forKey: UserDefaultsKey.userName)
+        UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
         if let viewController = UIApplication.topViewController() {
             viewController.present(MainTabBarController(), animated: false)
         }

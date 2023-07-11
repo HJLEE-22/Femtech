@@ -76,9 +76,9 @@ final class SignInViewController: UIViewController {
             return
         }
         // 서버와 통신해 유저 정보 입력 부분
-        UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
-        UserDefaults.standard.setValue(signInView.nameTextField.text, forKey: UserDefaultsKey.UserName)
-        UserDefaults.standard.setValue(signInView.emailTextField.text, forKey: UserDefaultsKey.UserEmail)
+        UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
+        UserDefaults.standard.setValue(signInView.nameTextField.text, forKey: UserDefaultsKey.userName)
+        UserDefaults.standard.setValue(signInView.emailTextField.text, forKey: UserDefaultsKey.userEmail)
         self.navigationController?.popViewController(animated: true)
     }
     

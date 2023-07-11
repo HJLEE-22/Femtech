@@ -49,9 +49,9 @@ extension FacebookLoginManager: LoginButtonDelegate {
                     return
                 }
                 // 로그인 완료 후 처리사항
-                UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.UserExists)
-//                UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.UserName)
-//                UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.UserEmail)
+                UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
+//                UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.userName)
+//                UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.userEmail)
             }
         }
     }
