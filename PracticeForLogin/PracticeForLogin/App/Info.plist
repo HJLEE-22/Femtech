@@ -41,19 +41,20 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>practiceforlogin.practiceforlogin</string>
-				<string>com.googleusercontent.apps.233574830896-1a2au8pu6htonotrojmgq6fu2bmd1ag9</string>
-				<string>fb517099877224099</string>
+				<string>com.googleusercontent.apps.83176259779-e98hm1r5goshn3475tr1mshbjqhb415b</string>
+				<string>fb583118747355730</string>
+                <string>18fe6515c47b24af4f3981b273499a20</string>
 			</array>
 		</dict>
 	</array>
 	<key>FacebookAppID</key>
-	<string>517099877224099</string>
+	<string>583118747355730</string>
 	<key>FacebookClientToken</key>
 	<string>44f64372ecfe77cda5af1e16ba595da3</string>
 	<key>FacebookDisplayName</key>
 	<string>PracticeForLogin</string>
 	<key>GIDClientID</key>
-	<string>233574830896-1a2au8pu6htonotrojmgq6fu2bmd1ag9.apps.googleusercontent.com</string>
+	<string>83176259779-e98hm1r5goshn3475tr1mshbjqhb415b.apps.googleusercontent.com</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
