@@ -1,0 +1,6 @@
+framework module Pods_Femtech_FemtechUITests {
+  umbrella header "Pods-Femtech-FemtechUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
