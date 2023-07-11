@@ -1,0 +1,6 @@
+framework module Pods_Femtech {
+  umbrella header "Pods-Femtech-umbrella.h"
+
+  export *
+  module * { export * }
+}
