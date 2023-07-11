@@ -10,6 +10,7 @@ import GoogleSignIn
 import AuthenticationServices
 import FBSDKCoreKit
 import NaverThirdPartyLogin
+import KakaoSDKAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -99,6 +100,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // 네이버 로그인 외부페이지로 연결
         NaverThirdPartyLoginConnection.getSharedInstance().receiveAccessToken(URLContexts.first?.url)
         
+        // 카카오 로그인 외부페이지 연결
+        if (AuthApi.isKakaoTalkLoginUrl(url)) {
+            _ = AuthController.handleOpenUrl(url: url)
+        }
     }
 }
 
