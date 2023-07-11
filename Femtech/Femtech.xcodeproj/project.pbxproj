@@ -14,9 +14,9 @@
 		9B1B6FB42A43B72200E1EC53 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6FB32A43B72200E1EC53 /* LoginViewController.swift */; };
 		9B1B6FB92A43B72600E1EC53 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B1B6FB82A43B72600E1EC53 /* Assets.xcassets */; };
 		9B1B6FBC2A43B72600E1EC53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B1B6FBA2A43B72600E1EC53 /* LaunchScreen.storyboard */; };
-		9B1B6FC72A43B72600E1EC53 /* PracticeForLoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6FC62A43B72600E1EC53 /* PracticeForLoginTests.swift */; };
-		9B1B6FD12A43B72600E1EC53 /* PracticeForLoginUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6FD02A43B72600E1EC53 /* PracticeForLoginUITests.swift */; };
-		9B1B6FD32A43B72600E1EC53 /* PracticeForLoginUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6FD22A43B72600E1EC53 /* PracticeForLoginUITestsLaunchTests.swift */; };
+		9B1B6FC72A43B72600E1EC53 /* FemtechTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6FC62A43B72600E1EC53 /* FemtechTests.swift */; };
+		9B1B6FD12A43B72600E1EC53 /* FemtechUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6FD02A43B72600E1EC53 /* FemtechUITests.swift */; };
+		9B1B6FD32A43B72600E1EC53 /* FemtechUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6FD22A43B72600E1EC53 /* FemtechUITestsLaunchTests.swift */; };
 		9B36032B2A49484100BE4E0D /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B36032A2A49484100BE4E0D /* LoginView.swift */; };
 		9B3603302A49651100BE4E0D /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B36032F2A49651100BE4E0D /* UIButton.swift */; };
 		9B8D7D0A2A4A6BA200E0473D /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D092A4A6BA200E0473D /* LaunchScreenViewController.swift */; };
@@ -94,10 +94,10 @@
 		9B1B6FBB2A43B72600E1EC53 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B1B6FBD2A43B72600E1EC53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B1B6FC22A43B72600E1EC53 /* FemtechTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FemtechTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B1B6FC62A43B72600E1EC53 /* PracticeForLoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeForLoginTests.swift; sourceTree = "<group>"; };
+		9B1B6FC62A43B72600E1EC53 /* FemtechTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FemtechTests.swift; sourceTree = "<group>"; };
 		9B1B6FCC2A43B72600E1EC53 /* FemtechUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FemtechUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9B1B6FD02A43B72600E1EC53 /* PracticeForLoginUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeForLoginUITests.swift; sourceTree = "<group>"; };
-		9B1B6FD22A43B72600E1EC53 /* PracticeForLoginUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeForLoginUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9B1B6FD02A43B72600E1EC53 /* FemtechUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FemtechUITests.swift; sourceTree = "<group>"; };
+		9B1B6FD22A43B72600E1EC53 /* FemtechUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FemtechUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9B36032A2A49484100BE4E0D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9B36032F2A49651100BE4E0D /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		9B8D7D092A4A6BA200E0473D /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
@@ -229,7 +229,7 @@
 		9B1B6FC52A43B72600E1EC53 /* FemtechTests */ = {
 			isa = PBXGroup;
 			children = (
-				9B1B6FC62A43B72600E1EC53 /* PracticeForLoginTests.swift */,
+				9B1B6FC62A43B72600E1EC53 /* FemtechTests.swift */,
 			);
 			path = FemtechTests;
 			sourceTree = "<group>";
@@ -237,8 +237,8 @@
 		9B1B6FCF2A43B72600E1EC53 /* FemtechUITests */ = {
 			isa = PBXGroup;
 			children = (
-				9B1B6FD02A43B72600E1EC53 /* PracticeForLoginUITests.swift */,
-				9B1B6FD22A43B72600E1EC53 /* PracticeForLoginUITestsLaunchTests.swift */,
+				9B1B6FD02A43B72600E1EC53 /* FemtechUITests.swift */,
+				9B1B6FD22A43B72600E1EC53 /* FemtechUITestsLaunchTests.swift */,
 			);
 			path = FemtechUITests;
 			sourceTree = "<group>";
@@ -802,7 +802,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B1B6FC72A43B72600E1EC53 /* PracticeForLoginTests.swift in Sources */,
+				9B1B6FC72A43B72600E1EC53 /* FemtechTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -810,8 +810,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B1B6FD12A43B72600E1EC53 /* PracticeForLoginUITests.swift in Sources */,
-				9B1B6FD32A43B72600E1EC53 /* PracticeForLoginUITestsLaunchTests.swift in Sources */,
+				9B1B6FD12A43B72600E1EC53 /* FemtechUITests.swift in Sources */,
+				9B1B6FD32A43B72600E1EC53 /* FemtechUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,7 +965,7 @@
 				CODE_SIGN_ENTITLEMENTS = Femtech/Femtech.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 68YVCN8TF9;
+				DEVELOPMENT_TEAM = 3F279N36AC;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Femtech/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -979,7 +979,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.qstag.femtech;
+				PRODUCT_BUNDLE_IDENTIFIER = 3F279N36AC.com.qstag.femtech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -996,7 +996,7 @@
 				CODE_SIGN_ENTITLEMENTS = Femtech/Femtech.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 68YVCN8TF9;
+				DEVELOPMENT_TEAM = 3F279N36AC;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = Femtech/App/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
@@ -1010,7 +1010,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.qstag.femtech;
+				PRODUCT_BUNDLE_IDENTIFIER = 3F279N36AC.com.qstag.femtech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1030,7 +1030,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = PracticeForLogin.PracticeForLoginTests;
+				PRODUCT_BUNDLE_IDENTIFIER = 3F279N36AC.com.qstag.femtechTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1051,7 +1051,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = PracticeForLogin.PracticeForLoginTests;
+				PRODUCT_BUNDLE_IDENTIFIER = 3F279N36AC.com.qstag.femtechTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1070,7 +1070,7 @@
 				DEVELOPMENT_TEAM = 68YVCN8TF9;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = PracticeForLogin.PracticeForLoginUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = 3F279N36AC.com.qstag.femtechUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -1089,7 +1089,7 @@
 				DEVELOPMENT_TEAM = 68YVCN8TF9;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = PracticeForLogin.PracticeForLoginUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = 3F279N36AC.com.qstag.femtechUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;

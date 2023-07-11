@@ -6,9 +6,9 @@
 //
 
 import XCTest
-@testable import PracticeForLogin
+@testable import Femtech
 
-final class PracticeForLoginTests: XCTestCase {
+final class FemtechTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

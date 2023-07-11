@@ -27,10 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // 네이버 아이디로 로그인하기 설정
         // NaverThirdPartyConstantsForApp.h 파일이 Define된 kServiceAppUrlScheme, kConsumerKey, kConsumerSecret, kServiceAppName의 수정을 읽지 못해 하드코딩
-        instance?.serviceUrlScheme = "practiceforlogin.practiceforlogin"
+        instance?.serviceUrlScheme = "com.qstag.femtech"
         instance?.consumerKey = "VeZ2i9qWxPQQr3010AWv"
         instance?.consumerSecret = "iPfzitwwNe"
-        instance?.appName = "PracticeForLogIn"
+        instance?.appName = "Femtech"
         
         return true
     }

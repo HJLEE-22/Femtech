@@ -2,37 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-	</array>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
-	<key>CFBundlePackageType</key>
-	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
-	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen.storyboard</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
-	<key>NSCameraPortraitEffectEnabled</key>
-	<false/>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -40,30 +21,36 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>practiceforlogin.practiceforlogin</string>
+				<string>com.qstag.femtech</string>
 				<string>com.googleusercontent.apps.83176259779-e98hm1r5goshn3475tr1mshbjqhb415b</string>
 				<string>fb583118747355730</string>
-                <string>18fe6515c47b24af4f3981b273499a20</string>
+				<string>18fe6515c47b24af4f3981b273499a20</string>
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
 	<string>583118747355730</string>
 	<key>FacebookClientToken</key>
 	<string>44f64372ecfe77cda5af1e16ba595da3</string>
 	<key>FacebookDisplayName</key>
-	<string>PracticeForLogin</string>
+	<string>Femtech</string>
 	<key>GIDClientID</key>
 	<string>83176259779-e98hm1r5goshn3475tr1mshbjqhb415b.apps.googleusercontent.com</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
 		<string>fb-messenger-share-api</string>
-        <string>naversearchapp</string>
-        <string>naversearchthirdlogin</string>
-        <string>kakaokompassauth</string>
-        <string>kakaolink</string>
+		<string>naversearchapp</string>
+		<string>naversearchthirdlogin</string>
+		<string>kakaokompassauth</string>
+		<string>kakaolink</string>
 	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSCameraPortraitEffectEnabled</key>
+	<false/>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -81,5 +68,18 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen.storyboard</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
 </dict>
 </plist>
