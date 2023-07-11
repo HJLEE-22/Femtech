@@ -7,6 +7,10 @@
 
 import SnapKit
 import GoogleSignIn
+import FBSDKLoginKit
+import KakaoSDKUser
+import KakaoSDKAuth
+import KakaoSDKCommon
 
 final class HomeViewController: UIViewController {
     
@@ -32,8 +36,8 @@ final class HomeViewController: UIViewController {
     // MARK: - Helpers
 
     private func setUserNameToLabel() {
-        guard let userName = UserDefaults.standard.value(forKey: UserDefaultsKey.UserName) as? String,
-              let userEmail = UserDefaults.standard.value(forKey: UserDefaultsKey.UserEmail) else {
+        guard let userName = UserDefaults.standard.value(forKey: UserDefaultsKey.userName) as? String,
+              let userEmail = UserDefaults.standard.value(forKey: UserDefaultsKey.userEmail) else {
             print("DEBUG: No exact user Info in UserDefaults")
             return
         }
@@ -49,7 +53,7 @@ final class HomeViewController: UIViewController {
         self.homeView.moveToSampleViewButton.addTarget(self, action: #selector(goToSampleViewController), for: .touchUpInside)
         self.homeView.moveToFoodDetailButton.addTarget(self, action: #selector(goToFoodDetailViewController), for: .touchUpInside)
         self.homeView.moveToOnlyTableButton.addTarget(self, action: #selector(goToOnlyTableViewController), for: .touchUpInside)
-        self.homeView.signoutButton.addTarget(self, action: #selector(doSignout), for: .touchUpInside)
+        self.homeView.signoutButton.addTarget(self, action: #selector(doSignOut), for: .touchUpInside)
     }
 
     @objc private func goToSampleViewController() {
@@ -64,17 +68,47 @@ final class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(OnlyTableViewController(), animated: true)
     }
     
-    @objc private func doSignout() {
-        if GIDSignIn.sharedInstance.currentUser != nil {
-            GIDSignIn.sharedInstance.signOut()
+    @objc private func doSignOut() {
+        guard let logInCaseRawValue = UserDefaults.standard.string(forKey: UserDefaultsKey.loginCase) else {
+            print("DEBUG: 저장된 로그인 방식 없음")
+            return
         }
-        UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.UserExists)
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKey.UserName)
-        UserDefaults.standard.removeObject(forKey: UserDefaultsKey.UserEmail)
-        print("DEBUG: Successfully sign outed")
-        let navigation = LoginNavigationController(rootViewController: LoginViewController())
-        navigation.navigationBar.tintColor = .black
-        navigation.modalPresentationStyle = .fullScreen
-        self.present(navigation, animated: false)
+        let savedLogInCase = LogInCase(rawValue: logInCaseRawValue)
+        print("DEBUG: savedLogInCase \(savedLogInCase)")
+        switch savedLogInCase {
+        case .apple:
+//            AppleSignInManager.shared.revokeAppleToken(...
+            break
+        case .email:
+            break
+        case .facebook:
+            LoginManager().logOut()
+        case .google:
+            if GIDSignIn.sharedInstance.currentUser != nil {
+                GIDSignIn.sharedInstance.signOut()
+            }
+        case .kakao:
+            UserApi.shared.logout { error in
+                guard error == nil else {
+                    print("DEBUG: \(error!)")
+                    return
+                }
+                print("DEBUG: kakao logout successed")
+            }
+        case .naver:
+            NaverLoginManager.shared.logOut()
+        default:
+            break
+        }
+        UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.isUserExists)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKey.userName)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKey.userEmail)
+        print("DEBUG: sign out button tapped")
+        let loginNavigationController = LoginNavigationController(rootViewController: LoginViewController())
+        loginNavigationController.navigationBar.tintColor = .black
+        loginNavigationController.modalPresentationStyle = .fullScreen
+        self.present(loginNavigationController, animated: false)
     }
+    
+    
 }
