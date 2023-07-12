@@ -12,8 +12,8 @@ final class MainTabBarController: UITabBarController {
     // MARK: - Properties
     
     let homeNavigationContrller = HomeNavigationController(rootViewController: HomeViewController())
-    let settingNavigationController = SettingNavigationController(rootViewController: SettingViewController())
-
+//    let settingNavigationController = SettingNavigationController(rootViewController: SettingViewController())
+    let calendarNavigationController = CalendarNavigationController(rootViewController: CalendarViewController())
     
     // MARK: - Lifecycle
     
@@ -28,7 +28,7 @@ final class MainTabBarController: UITabBarController {
 
     private func setControllersInTabBar() {
         // 컨트롤러 두개 추가
-        self.setViewControllers([homeNavigationContrller, settingNavigationController], animated: false)
+        self.setViewControllers([homeNavigationContrller, calendarNavigationController], animated: false)
     }
     
     private func setTabBarUI() {
@@ -41,8 +41,8 @@ final class MainTabBarController: UITabBarController {
         }
         items[0].image = UIImage(systemName: IconNames.house)
         items[0].selectedImage = UIImage(systemName: IconNames.houseFill)
-        items[1].image = UIImage(systemName: IconNames.gearshape)
-        items[1].selectedImage = UIImage(systemName: IconNames.gearshapeFill)
+        items[1].image = UIImage(systemName: IconNames.calendarCircle)
+        items[1].selectedImage = UIImage(systemName: IconNames.calendarCircleFill)
 
         self.selectedIndex = 0
     }

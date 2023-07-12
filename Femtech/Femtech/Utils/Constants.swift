@@ -28,7 +28,11 @@ public struct IconNames {
     static let houseFill = "house.fill"
     static let gearshape = "gearshape"
     static let gearshapeFill = "gearshape.fill"
-    
+    static let calendarCircle = "calendar.circle"
+    static let calendarCircleFill = "calendar.circle.fill"
+    static let textAlignLeft = "text.alignleft"
+    static let arrowTriangleDownFill = "arrowtriangle.down.fill"
+    static let magnifyingGlass = "magnifyingglass"
 }
 
 public struct NotificattionNames {

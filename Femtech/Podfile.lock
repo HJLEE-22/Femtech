@@ -14,6 +14,7 @@ PODS:
   - FBSDKCoreKit_Basics (15.1.0)
   - FBSDKLoginKit (15.1.0):
     - FBSDKCoreKit (= 15.1.0)
+  - FSCalendar (2.8.4)
   - GoogleSignIn (7.0.0):
     - AppAuth (~> 1.5)
     - GTMAppAuth (< 3.0, >= 1.3)
@@ -46,6 +47,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 5.6.4)
   - FBSDKLoginKit (~> 15.1.0)
+  - FSCalendar (~> 2.8.3)
   - GoogleSignIn (~> 7.0.0)
   - KakaoSDKAuth (~> 2.14.0)
   - KakaoSDKCommon (~> 2.14.0)
@@ -64,6 +66,7 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
     - FBSDKLoginKit
+    - FSCalendar
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
@@ -84,6 +87,7 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: 7542746fc63a2a38dd6a865eeb54268341f37b83
   FBSDKCoreKit_Basics: 92d6b26c0bed30ab09bbdd96dccaa26e6c9978d1
   FBSDKLoginKit: 4e275d30cf90e92bdf3a7c82857a8642abf23037
+  FSCalendar: 2d1d0d9398f12d439f55c1fe0f01525b151b8260
   GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
@@ -97,6 +101,6 @@ SPEC CHECKSUMS:
   naveridlogin-sdk-ios: cdd34e3585a3d5aaf37c1d84c1f41faba4a25d1a
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: 9961079c44799fcb7eee913216506fc915839ac7
+PODFILE CHECKSUM: ef0b6ca1791988cbe44e6c0448193050f7f43baa
 
 COCOAPODS: 1.12.1
