@@ -18,6 +18,7 @@ target 'Femtech' do
     pod 'KakaoSDKAuth', '~> 2.14.0'
     pod 'KakaoSDKUser', '~> 2.14.0'
     pod 'KakaoSDKShare', '~> 2.14.0'
+    pod 'FSCalendar', '~> 2.8.3'
 
   target 'FemtechTests' do
     inherit! :search_paths
