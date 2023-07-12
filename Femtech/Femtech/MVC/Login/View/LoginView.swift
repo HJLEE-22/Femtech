@@ -222,17 +222,17 @@ final class LoginView: UIView {
      // MARK: - Helpers
  
      
-     func setValue() {
+     private func setValue() {
          self.backgroundColor = UIColor.viewBackgroundColor
      }
      
     // forEach 함수를 통해 self.view에 각 UI 요소들 addSubview.
-     func setSubviews() {
+     private func setSubviews() {
          [self.appLogo, self.emailPasswordStackView, self.loginButtonStackView, self.signInStackView, self.socialLoginStackView]
              .forEach { self.addSubview($0) }
      }
 
-     func setLayout() {
+     private func setLayout() {
          self.appLogo.snp.makeConstraints { make in
              make.centerX.equalToSuperview()
              make.top.equalToSuperview().inset(120)

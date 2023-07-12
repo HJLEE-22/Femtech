@@ -188,16 +188,16 @@ final class SignInView: UIView {
     // MARK: - Helpers
 
     
-    func setValue() {
+    private func setValue() {
         self.backgroundColor = UIColor.viewBackgroundColor
     }
     
-    func setSubViews() {
+    private func setSubViews() {
         [self.profileImageView, self.plusIconImageView, self.imagePickerButton, self.allTextFieldStackView, self.signInButton, self.openPrivacyPolicyButton]
             .forEach { self.addSubview($0) }
     }
     
-    func setLayout() {
+    private func setLayout() {
         self.profileImageView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(safeAreaLayoutGuide.snp.top).inset(100)
