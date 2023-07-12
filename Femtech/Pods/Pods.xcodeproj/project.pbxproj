@@ -1271,7 +1271,7 @@
 		2BC7529A37201449E61BA709FCB85349 /* CurveVertex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CurveVertex.swift; path = Sources/Private/Utility/Primitives/CurveVertex.swift; sourceTree = "<group>"; };
 		2BCD720DF1572E7F7DE6E636462A366F /* ImageLayerModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImageLayerModel.swift; path = Sources/Private/Model/Layers/ImageLayerModel.swift; sourceTree = "<group>"; };
 		2CD7F9BE853E096CAFA76A9AF6B5D01A /* KakaoSDKTemplate-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "KakaoSDKTemplate-dummy.m"; sourceTree = "<group>"; };
-		2D2F7F64049072A603FEDB3140E8B685 /* Pods-Femtech */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Femtech"; path = Pods_Femtech.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D2F7F64049072A603FEDB3140E8B685 /* Pods_Femtech.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Femtech.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EC4D03CC6F3B805218B48D477E4A1EB /* KingfisherOptionsInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KingfisherOptionsInfo.swift; path = Sources/General/KingfisherOptionsInfo.swift; sourceTree = "<group>"; };
 		2F231BB16CE253CD20DAE37D2FEA4570 /* FBAEMKit.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = FBAEMKit.xcframework; path = XCFrameworks/FBAEMKit.xcframework; sourceTree = "<group>"; };
 		2F623FEB10DE7827B4552E145A7422DE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
@@ -2546,7 +2546,7 @@
 				1353D6A467F43A6A3EA21D310BD35A31 /* KakaoSDKUser */,
 				C3F44C782D64D7EB20B61CE3844EBFAD /* Kingfisher */,
 				51BA97E8B5085EFFB47BC9C0B785CEA7 /* lottie-ios */,
-				2D2F7F64049072A603FEDB3140E8B685 /* Pods-Femtech */,
+				2D2F7F64049072A603FEDB3140E8B685 /* Pods_Femtech.framework */,
 				2FFBF8B8EFA06AC5AC64784C4549EB10 /* Pods-Femtech-FemtechUITests */,
 				82D1EF5172DC3840BF9C8FD362504A80 /* Pods-FemtechTests */,
 				979486118B3E90C08386079D57962701 /* SnapKit */,
@@ -3773,7 +3773,7 @@
 			);
 			name = "Pods-Femtech";
 			productName = Pods_Femtech;
-			productReference = 2D2F7F64049072A603FEDB3140E8B685 /* Pods-Femtech */;
+			productReference = 2D2F7F64049072A603FEDB3140E8B685 /* Pods_Femtech.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		7DFA91ED3A3D0BC020C3C843A3D1EB38 /* GoogleSignIn-GoogleSignIn */ = {
