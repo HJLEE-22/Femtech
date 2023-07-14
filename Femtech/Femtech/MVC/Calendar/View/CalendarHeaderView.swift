@@ -12,7 +12,7 @@ final class CalendarHeaderView: UIView {
 
     lazy var calendarTitle: UILabel = {
         let label = UILabel()
-        label.text = "2023. 7"
+//        label.text = "2023. 7"
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
