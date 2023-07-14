@@ -37,13 +37,13 @@ final class LaunchScreenViewController: UIViewController {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkLoginIn),
-                                               name: NotificattionNames.userLogin,
+                                               name: Notification.Name.userLogin,
                                                object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: NotificattionNames.userLogin, object: nil)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.userLogin, object: nil)
     }
     
     // MARK: - Helpers
@@ -68,7 +68,7 @@ final class LaunchScreenViewController: UIViewController {
             UIView.animate(withDuration: 0.3, animations: { self.animationView.alpha = 0 }) { _ in
                 self.animationView.isHidden = true
                 self.animationView.removeFromSuperview()
-                NotificationCenter.default.post(name: NotificattionNames.userLogin, object: nil)
+                NotificationCenter.default.post(name: Notification.Name.userLogin, object: nil)
             }
         }
     }
