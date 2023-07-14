@@ -14,7 +14,7 @@ struct FoodDataManager {
     static let shared = FoodDataManager()
     private init() {}
         
-    private var url:String = "\(NetworkNames.FOOD_CATEGORY_URL_DEV)"
+    private var url:String = "\(NetworkNames.foodCategoryApi)"
     
     func fetchFood(id: String, completion:  @escaping ([Food.FoodResult]) -> Void ){
         let urlString = "\(self.url)\(id)"
@@ -67,7 +67,7 @@ struct FoodDataManagerAF {
     static let shared = FoodDataManagerAF()
     private init() {}
     typealias NetworkCompletion = (Result<[Food.FoodResult], NetworkError>) -> Void
-    private var url:String = "\(NetworkNames.FOOD_CATEGORY_URL_DEV)"
+    private var url:String = "\(NetworkNames.foodCategoryApi)"
     
     func fetchFood(id: String, completion: @escaping NetworkCompletion) {
         let urlString = "\(self.url)\(id)"

@@ -1,5 +1,5 @@
 //
-//  FacebookLoginManager.swift
+//  FacebookLogInManager.swift
 //  PracticeForLogin
 //
 //  Created by Lee on 2023/07/07.
@@ -8,9 +8,9 @@
 import Foundation
 import FBSDKLoginKit
 
-final class FacebookLoginManager: NSObject {
+final class FacebookLogInManager: NSObject {
     
-    static let shared = FacebookLoginManager()
+    static let shared = FacebookLogInManager()
     private override init() {}
 
     func logInWithFacebook() {
@@ -36,7 +36,7 @@ final class FacebookLoginManager: NSObject {
 
 
 // MARK: - facebook login delegate
-extension FacebookLoginManager: LoginButtonDelegate {
+extension FacebookLogInManager: LoginButtonDelegate {
     func loginButton(_ loginButton: FBSDKLoginKit.FBLoginButton, didCompleteWith result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {
         if let error = error {
             //self.delegate?.onError(.facebook, error)
