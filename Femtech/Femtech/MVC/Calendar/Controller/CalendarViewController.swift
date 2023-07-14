@@ -13,6 +13,16 @@ final class CalendarViewController: UIViewController {
     
     // MARK: - Properties
     
+    // MARK: - date 관련
+    
+    var dateString: String? {
+        let myFormatter = DateFormatter()
+        myFormatter.dateFormat = "yyyy. M"
+        let date = self.calendar.currentPage
+        let savedDateString = myFormatter.string(from: date)
+        return savedDateString
+    }
+    
 //    private let calendarView = CalendarView()
     // 이동시키는 객체의 CGPoint 값
     private var viewTransition = CGPoint(x: 0, y: 0)
@@ -36,14 +46,6 @@ final class CalendarViewController: UIViewController {
     private let calendarHeaderView = CalendarHeaderView()
     private let calendarHeaderViewHeight: CGFloat = 50
     
-    private var calendarTitleLabel: UILabel? {
-        let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 25)
-        label.textAlignment = .left
-        label.text = "2023. 7"
-        return label
-    }
-    
     private lazy var scopeGesture: UIPanGestureRecognizer = { [unowned self] in
 //        let panGesture = UIPanGestureRecognizer(target: self.calendar, action: #selector(self.calendar.handleScopeGesture))
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.changeCalendarHeight))
@@ -60,6 +62,8 @@ final class CalendarViewController: UIViewController {
         self.setFSCalendarUI()
         self.setNavigationBar()
         self.view.addGestureRecognizer(self.scopeGesture)
+        self.calendarHeaderView.calendarTitle.text = self.dateString
+        
     }
     
     override func loadView() {
@@ -79,10 +83,11 @@ final class CalendarViewController: UIViewController {
             if self.viewVelocity.y < 0 && self.calendar.fs_height == mainViewHeight {
                 
                 self.calendar.snp.updateConstraints { make in
-                    make.height.equalTo(self.mainViewHeight / 2)
-
+                    make.height.equalTo(mainViewHeight / 2)
                 }
-//                self.calendar(self.calendar, boundingRectWillChange: CGRect(x: 0, y: 0, width: 100, height: Int(mainViewHeight / 2)), animated: true)
+//                DispatchQueue.main.async {
+//                    self.calendar(self.calendar, boundingRectWillChange: CGRect(x: 0, y: 0, width: Int(self.view.bounds.width), height: Int(self.mainViewHeight / 2)), animated: true)
+//                }
                 
                 UIView.animate(withDuration: 0.3) {
                     self.view.layoutIfNeeded()
@@ -124,7 +129,7 @@ final class CalendarViewController: UIViewController {
         calendar.snp.makeConstraints { make in
             make.top.equalTo(self.calendarHeaderView.snp.bottom)
             make.left.right.equalToSuperview()
-            make.height.equalTo(self.mainViewHeight)
+            make.height.equalTo(mainViewHeight)
         }
         //언어설정
         calendar.locale = Locale(identifier: "ko_KR")
@@ -177,6 +182,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         calendar.snp.updateConstraints { (make) in
             make.height.equalTo(bounds.height)
             // Do other updates
+            
         }
         self.view.layoutIfNeeded()
     }
@@ -194,6 +200,7 @@ extension CalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
 }
 
 extension CalendarViewController: UIGestureRecognizerDelegate {
+    
 //    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
 //            let velocity = self.scopeGesture.velocity(in: self.view)
 //            switch self.calendar.scope {

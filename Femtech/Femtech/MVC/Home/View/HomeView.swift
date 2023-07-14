@@ -24,6 +24,7 @@ final class HomeView: UIView {
         label.textColor = UIColor.mainMintColor
         label.text = "sample@gmail.com"
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -51,9 +52,17 @@ final class HomeView: UIView {
         return button
     }()
     
-    lazy var signoutButton: UIButton = {
+    lazy var signOutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign out", for: .normal)
+        button.setTitleColor(UIColor.mainMintColor, for: .normal)
+        button.backgroundColor = .systemGray5
+        return button
+    }()
+    
+    lazy var logOutButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Log out", for: .normal)
         button.setTitleColor(UIColor.mainMintColor, for: .normal)
         button.backgroundColor = .systemGray5
         return button
@@ -79,17 +88,17 @@ final class HomeView: UIView {
     }
 
     private func setSubviews() {
-        [self.userNameLabel,self.userEmailLabel, self.moveToFoodDetailButton, self.moveToSampleViewButton, self.moveToOnlyTableButton, self.signoutButton].forEach { self.addSubview($0) }
+        [self.userNameLabel,self.userEmailLabel, self.moveToFoodDetailButton, self.moveToSampleViewButton, self.moveToOnlyTableButton, self.signOutButton, self.logOutButton].forEach { self.addSubview($0) }
     }
     
     private func setLayout() {
         self.userNameLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(100)
-            make.left.right.equalToSuperview().inset(100)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(50)
+            make.left.right.equalToSuperview().inset(50)
         }
         self.userEmailLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.userNameLabel.snp.bottom).offset(50)
-            make.left.right.equalToSuperview().inset(100)
+            make.top.equalTo(self.userNameLabel.snp.bottom).offset(20)
+            make.left.right.equalToSuperview().inset(20)
         }
         self.moveToSampleViewButton.snp.makeConstraints { make in
             make.top.equalTo(self.userEmailLabel.snp.bottom).offset(50)
@@ -103,8 +112,12 @@ final class HomeView: UIView {
             make.top.equalTo(self.moveToFoodDetailButton.snp.bottom).offset(50)
             make.left.right.equalToSuperview().inset(100)
         }
-        self.signoutButton.snp.makeConstraints { make in
+        self.signOutButton.snp.makeConstraints { make in
             make.top.equalTo(self.moveToOnlyTableButton.snp.bottom).offset(50)
+            make.left.right.equalToSuperview().inset(100)
+        }
+        self.logOutButton.snp.makeConstraints { make in
+            make.top.equalTo(self.signOutButton.snp.bottom).offset(50)
             make.left.right.equalToSuperview().inset(100)
         }
     }

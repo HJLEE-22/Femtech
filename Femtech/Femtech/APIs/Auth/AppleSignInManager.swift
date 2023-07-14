@@ -41,11 +41,15 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
         // ASAuthorizationAppleIDCredential은 비밀번호 및 페이스ID 인증
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
             // error handling은 밑 메서드에서 진행
+            print("DEBUG: no apple id credential")
             return
         }
         let userIdentifier = appleIDCredential.user
-        // appleIDCredential.fullName은 PersonNameComponents 타입. 직접 초기화는 iOS15부터 가능. nil 코얼레싱 값을 주기 위해 givenName으로 작업.
-        let fullName = appleIDCredential.fullName?.givenName ?? "no name"
+//        // appleIDCredential.fullName은 PersonNameComponents 타입. 직접 초기화는 iOS15부터 가능. nil 코얼레싱 값을 주기 위해 givenName으로 작업.
+//        let fullName = appleIDCredential.fullName?.givenName ?? "no name"
+        let givenName = appleIDCredential.fullName?.givenName ?? "이름"
+        let familyName = appleIDCredential.fullName?.familyName ?? "성"
+        let fullName  = "\(familyName)\(givenName)"
         let email = appleIDCredential.email ?? "no email"
         let identityToken = appleIDCredential.identityToken
         print("DEBUG: Apple userIdentifier \(userIdentifier)")
@@ -54,12 +58,12 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
         UserDefaults.standard.set(userIdentifier, forKey: UserDefaultsKey.appleUserIdentifier)
         UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.userName)
         UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.userEmail)
-        UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
-        if let viewController = UIApplication.topViewController() {
-            viewController.present(MainTabBarController(), animated: false)
-        }
+//        if let viewController = UIApplication.topViewController() {
+//            viewController.present(MainTabBarController(), animated: false)
+//        }
         
         self.tokenSignIn(idToken: identityToken)
+        self.fetchUserSignUp(idToken: identityToken, logInType: .apple)
     }
     
     // 개발 서버에 토큰 전달
@@ -81,6 +85,38 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
         task.resume()
     }
     
+    func fetchUserSignUp(idToken: Data?, logInType: LogInType) {
+        // 차후 유저네임이 required/optional 인지 정해지면 오류처리 수정
+        let idTokenString = idToken?.base64EncodedString() ?? "noAccessCode"
+        
+        let parameters = ["com_type": logInType.rawValue, "access_code": idTokenString]
+        let urlString = NetworkNames.devSignUpApi
+        guard let url = URL(string:urlString) else {
+            print("DEBUG: incorrect URL for sign up")
+            return
+        }
+        let request = AF.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
+        
+        request.validate(statusCode: 200..<300).responseDecodable(of: UserSignUpModel.self) { response in
+            switch response.result {
+            case .success(let signUpData):
+                print("DEBUG: signUpData \(signUpData)")
+                guard let refreshToken = signUpData.data.first?.refreshToken else {
+                    print("DEBUG: no refresh token")
+                    NotificationCenter.default.post(name: Notification.Name.userLogin, object: nil)
+                    return
+                }
+                UserDefaults.standard.setValue(refreshToken, forKey: UserDefaultsKey.refreshTokenForApple)
+                UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
+                NotificationCenter.default.post(name: Notification.Name.userLogin, object: nil)
+                // 회원가입 후 바로 로그인 상태로 전환. 회원가입 시에도 리프레시 토큰 나올 것.
+//                self?.fetchUserLogIn(email: email, userName: userName, refreshToken: refreshToken, logInType: .kakao)
+            case .failure(let error):
+                print("error: \(error.localizedDescription)")
+                UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.isUserExists)
+            }
+        }
+    }
     
     /*
      // token을 String화 해 딕셔너리로 전달 방식
@@ -132,6 +168,8 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
         }
     }
     
+    // MARK: - Error 발생
+
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
         print("Sign in with Apple errored: \(error)")

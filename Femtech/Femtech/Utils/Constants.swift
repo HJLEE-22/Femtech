@@ -16,6 +16,11 @@ public struct UserDefaultsKey {
     static let userEmail = "userEmail"
     static let appleUserIdentifier = "appleUserIdentifier"
     static let loginCase = "loginCase"
+    static let refreshTokenForKakao = "refreshTokenForKakao"
+    static let refreshTokenForNaver = "refreshTokenForNaver"
+    static let refreshTokenForGoogle = "refreshTokenForGoogle"
+    static let refreshTokenForFacebook = "refreshTokenForFacebook"
+    static let refreshTokenForApple = "refreshTokenForApple"
 }
 
 public struct IconNames {
@@ -35,19 +40,8 @@ public struct IconNames {
     static let magnifyingGlass = "magnifyingglass"
 }
 
-public struct NotificattionNames {
-    private init() {}
-    
+extension Notification.Name {
     static let userLogin = Notification.Name("userLogin")
-}
-
-public struct NetworkNames {
-    private init() {}
-
-    // DEV API 기본 URL (QSCheck)
-    static let DEV_API_URL = "https://dev.qsreader.com/api"
-    // 음식제안 URL (QSCheck)
-    static let FOOD_CATEGORY_URL_DEV = "\(DEV_API_URL)/food?category_id="
 }
 
 public struct AnimationNames {

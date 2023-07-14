@@ -35,6 +35,8 @@ final class HomeViewController: UIViewController {
 
     // MARK: - Helpers
 
+    // MARK: - UI Setting
+
     private func setUserNameToLabel() {
         guard let userName = UserDefaults.standard.value(forKey: UserDefaultsKey.userName) as? String,
               let userEmail = UserDefaults.standard.value(forKey: UserDefaultsKey.userEmail) else {
@@ -53,7 +55,8 @@ final class HomeViewController: UIViewController {
         self.homeView.moveToSampleViewButton.addTarget(self, action: #selector(goToSampleViewController), for: .touchUpInside)
         self.homeView.moveToFoodDetailButton.addTarget(self, action: #selector(goToFoodDetailViewController), for: .touchUpInside)
         self.homeView.moveToOnlyTableButton.addTarget(self, action: #selector(goToOnlyTableViewController), for: .touchUpInside)
-        self.homeView.signoutButton.addTarget(self, action: #selector(doSignOut), for: .touchUpInside)
+        self.homeView.signOutButton.addTarget(self, action: #selector(doSignOut), for: .touchUpInside)
+        self.homeView.logOutButton.addTarget(self, action: #selector(doLogOut), for: .touchUpInside)
     }
 
     @objc private func goToSampleViewController() {
@@ -68,12 +71,12 @@ final class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(OnlyTableViewController(), animated: true)
     }
     
-    @objc private func doSignOut() {
+    @objc private func doLogOut() {
         guard let logInCaseRawValue = UserDefaults.standard.string(forKey: UserDefaultsKey.loginCase) else {
             print("DEBUG: 저장된 로그인 방식 없음")
             return
         }
-        let savedLogInCase = LogInCase(rawValue: logInCaseRawValue)
+        let savedLogInCase = LogInType(rawValue: logInCaseRawValue)
         print("DEBUG: savedLogInCase \(savedLogInCase)")
         switch savedLogInCase {
         case .apple:
@@ -85,7 +88,9 @@ final class HomeViewController: UIViewController {
             LoginManager().logOut()
         case .google:
             if GIDSignIn.sharedInstance.currentUser != nil {
-                GIDSignIn.sharedInstance.signOut()
+                GIDSignIn.sharedInstance.disconnect() { error in
+                    // 자체서버 로그아웃 처리
+                }
             }
         case .kakao:
             UserApi.shared.logout { error in
@@ -94,9 +99,54 @@ final class HomeViewController: UIViewController {
                     return
                 }
                 print("DEBUG: kakao logout successed")
+//                UserDefaults.standard.removeObject(forKey: UserDefaultsKey.refreshToken)
             }
         case .naver:
-            NaverLoginManager.shared.logOut()
+            NaverLogInManager.shared.logOut()
+        default:
+            break
+        }
+        UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.isUserExists)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKey.userName)
+        UserDefaults.standard.removeObject(forKey: UserDefaultsKey.userEmail)
+        print("DEBUG: log out button tapped")
+        let loginNavigationController = LoginNavigationController(rootViewController: LoginViewController())
+        loginNavigationController.navigationBar.tintColor = .black
+        loginNavigationController.modalPresentationStyle = .fullScreen
+        self.present(loginNavigationController, animated: false)
+    }
+    
+    @objc private func doSignOut() {
+        guard let logInCaseRawValue = UserDefaults.standard.string(forKey: UserDefaultsKey.loginCase) else {
+            print("DEBUG: 저장된 로그인 방식 없음")
+            return
+        }
+        let savedLogInCase = LogInType(rawValue: logInCaseRawValue)
+        print("DEBUG: savedLogInCase \(savedLogInCase)")
+        switch savedLogInCase {
+        case .apple:
+//            AppleSignInManager.shared.revokeAppleToken(...
+            break
+        case .email:
+            break
+        case .facebook:
+//          별도의 log out 없음
+            LoginManager().logOut()
+        case .google:
+            if GIDSignIn.sharedInstance.currentUser != nil {
+                GIDSignIn.sharedInstance.signOut()
+            }
+        case .kakao:
+            UserApi.shared.unlink { error in
+                guard error == nil else {
+                    print("DEBUG: \(error!)")
+                    return
+                }
+                print("DEBUG: kakao logout successed")
+//                UserDefaults.standard.removeObject(forKey: UserDefaultsKey.refreshToken)
+            }
+        case .naver:
+            NaverLogInManager.shared.signOut()
         default:
             break
         }
@@ -109,6 +159,4 @@ final class HomeViewController: UIViewController {
         loginNavigationController.modalPresentationStyle = .fullScreen
         self.present(loginNavigationController, animated: false)
     }
-    
-    
 }
