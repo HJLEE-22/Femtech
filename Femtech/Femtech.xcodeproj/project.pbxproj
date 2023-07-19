@@ -21,7 +21,6 @@
 		9B3603302A49651100BE4E0D /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B36032F2A49651100BE4E0D /* UIButton.swift */; };
 		9B39F94D2A5D3C5400F5EF52 /* Pods_Femtech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 548CC1CED3E9DD8689DB86FF /* Pods_Femtech.framework */; };
 		9B39F9552A5D40EC00F5EF52 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39F9542A5D40EC00F5EF52 /* CalendarView.swift */; };
-		9B39F9572A5D416900F5EF52 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39F9562A5D416900F5EF52 /* CalendarViewController.swift */; };
 		9B39F9592A5E204400F5EF52 /* CalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39F9582A5E204400F5EF52 /* CalendarNavigationController.swift */; };
 		9B39F95B2A5E415200F5EF52 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39F95A2A5E415200F5EF52 /* CalendarHeaderView.swift */; };
 		9B39F95D2A5F72DB00F5EF52 /* KakaoLogInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39F95C2A5F72DB00F5EF52 /* KakaoLogInManager.swift */; };
@@ -115,7 +114,6 @@
 		9B36032A2A49484100BE4E0D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9B36032F2A49651100BE4E0D /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		9B39F9542A5D40EC00F5EF52 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		9B39F9562A5D416900F5EF52 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9B39F9582A5E204400F5EF52 /* CalendarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNavigationController.swift; sourceTree = "<group>"; };
 		9B39F95A2A5E415200F5EF52 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
 		9B39F95C2A5F72DB00F5EF52 /* KakaoLogInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLogInManager.swift; sourceTree = "<group>"; };
@@ -319,7 +317,6 @@
 		9B39F9512A5D409400F5EF52 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9B39F9562A5D416900F5EF52 /* CalendarViewController.swift */,
 				9B39F9582A5E204400F5EF52 /* CalendarNavigationController.swift */,
 				9BB1F52A2A6600F100C3DC46 /* CustomCalendarViewController.swift */,
 			);
@@ -847,7 +844,6 @@
 				9BC5484F2A4D1AE60059701D /* OnlyTableViewController.swift in Sources */,
 				9BB1F5372A661C8A00C3DC46 /* DateCollectionViewCell.swift in Sources */,
 				9B39F9552A5D40EC00F5EF52 /* CalendarView.swift in Sources */,
-				9B39F9572A5D416900F5EF52 /* CalendarViewController.swift in Sources */,
 				9BB1F52D2A660D6400C3DC46 /* String.swift in Sources */,
 				9B8D7D182A4AA8EC00E0473D /* SigninView.swift in Sources */,
 				9BC548572A4D55780059701D /* TouchableOpacityView.swift in Sources */,
