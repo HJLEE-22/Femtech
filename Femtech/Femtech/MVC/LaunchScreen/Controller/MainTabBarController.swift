@@ -13,7 +13,7 @@ final class MainTabBarController: UITabBarController {
     
     let homeNavigationContrller = HomeNavigationController(rootViewController: HomeViewController())
 //    let settingNavigationController = SettingNavigationController(rootViewController: SettingViewController())
-    let calendarNavigationController = CalendarNavigationController(rootViewController: CalendarViewController())
+    let calendarNavigationController = CalendarNavigationController(rootViewController: CustomCalendarViewController())
     
     // MARK: - Lifecycle
     
