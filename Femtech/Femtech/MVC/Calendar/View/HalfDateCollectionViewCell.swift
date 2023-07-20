@@ -1,14 +1,14 @@
 //
-//  DateCollectionViewCell.swift
+//  HalfDateCollectionViewCell.swift
 //  Femtech
 //
-//  Created by Lee on 2023/07/18.
+//  Created by Lee on 2023/07/20.
 //
 
-import UIKit
+import SnapKit
 
-final class DateCollectionViewCell: UICollectionViewCell {
-    static let identifier = "DateCollectionViewCell"
+final class HalfDateCollectionViewCell: UICollectionViewCell {
+    static let identifier = "HalfDateCollectionViewCell"
     
     // MARK: - Properties
     let dateLabel: UILabel = {
@@ -62,6 +62,10 @@ final class DateCollectionViewCell: UICollectionViewCell {
     }
     
 }
+
+    
+    
+
 
     
     

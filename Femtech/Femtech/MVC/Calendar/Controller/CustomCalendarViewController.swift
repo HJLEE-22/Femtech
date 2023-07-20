@@ -62,7 +62,7 @@ final class CustomCalendarViewController: UIViewController {
         collectionView.isScrollEnabled = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: DateCollectionViewCell.identifier)
+        collectionView.register(FullDateCollectionViewCell.self, forCellWithReuseIdentifier: FullDateCollectionViewCell.identifier)
         collectionView.collectionViewLayout.invalidateLayout()
         return collectionView
     }()
@@ -79,7 +79,7 @@ final class CustomCalendarViewController: UIViewController {
         collectionView.isScrollEnabled = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: DateCollectionViewCell.identifier)
+        collectionView.register(FullDateCollectionViewCell.self, forCellWithReuseIdentifier: FullDateCollectionViewCell.identifier)
         collectionView.collectionViewLayout.invalidateLayout()
         return collectionView
     }()
@@ -96,7 +96,7 @@ final class CustomCalendarViewController: UIViewController {
         collectionView.isScrollEnabled = false
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(DateCollectionViewCell.self, forCellWithReuseIdentifier: DateCollectionViewCell.identifier)
+        collectionView.register(FullDateCollectionViewCell.self, forCellWithReuseIdentifier: FullDateCollectionViewCell.identifier)
         collectionView.collectionViewLayout.invalidateLayout()
         return collectionView
     }()
@@ -324,7 +324,7 @@ extension CustomCalendarViewController: UICollectionViewDataSource {
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DateCollectionViewCell.identifier, for: indexPath) as? DateCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FullDateCollectionViewCell.identifier, for: indexPath) as? FullDateCollectionViewCell else {
             return UICollectionViewCell()
         }
         // 차후 calendarMode 값을 통해 데이터를 어떻게 줄 지 변화 가능
