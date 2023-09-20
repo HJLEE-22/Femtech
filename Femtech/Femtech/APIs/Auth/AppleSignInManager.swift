@@ -30,13 +30,51 @@ final class AppleSignInManager: NSObject {
     
     func signOut() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
+//        self.revokeAppleToken(...)
+    }
+    
+    func fetchUserLogInForApple(email: String, userName: String, refreshToken: String) {
+        
+        let parameters = ["email": email,
+                          "name": userName,
+                          "apple_refreshtoken": refreshToken]
+        let urlString = NetworkNames.devSignUpAppleApi
+        guard let url = URL(string:urlString) else {
+            print("DEBUG: incorrect URL for sign up")
+            return
+        }
+        let request = AF.request(url,
+                                 method: .post,
+                                 parameters: parameters,
+                                 encoding: URLEncoding.default)
+        request.validate(statusCode: 200..<300).responseDecodable(of: UserSignUpModel.self) { response in
+            switch response.result {
+            case .success(let signUpData):
+                print("DEBUG: signUpData \(signUpData)")
+                guard let refreshToken = signUpData.data.first?.refreshToken else {
+                    print("DEBUG: no refresh token")
+                    NotificationCenter.default.post(name: Notification.Name.userLogin, object: nil)
+                    return
+                }
+                print("DEBUG: refreshToken \(refreshToken)")
+                UserDefaults.standard.setValue(refreshToken, forKey: UserDefaultsKey.refreshTokenForApple)
+                UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
+                NotificationCenter.default.post(name: Notification.Name.userLogin, object: nil)
+                // 회원가입 후 바로 로그인 상태로 전환. 회원가입 시에도 리프레시 토큰 나올 것.
+//                self.fetchUserLogIn(email: email, userName: userName, refreshToken: refreshToken, logInType: .kakao)
+                
+            case .failure(let error):
+                print("error: \(error.localizedDescription)")
+                UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.isUserExists)
+            }
+        }
         
     }
 }
 
 // MARK: - ASAuthorizationControllerDelegate
 extension AppleSignInManager: ASAuthorizationControllerDelegate {
-    // apple 로그인 성공 후 처리 내역
+    // 사용자가 apple 로그인 성공 후 처리 내역
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         // ASAuthorizationAppleIDCredential은 비밀번호 및 페이스ID 인증
         guard let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential else {
@@ -50,8 +88,21 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
         let givenName = appleIDCredential.fullName?.givenName ?? "이름"
         let familyName = appleIDCredential.fullName?.familyName ?? "성"
         let fullName  = "\(familyName)\(givenName)"
+        
+        if  let authorizationCode = appleIDCredential.authorizationCode,
+            let identityToken = appleIDCredential.identityToken,
+            let authCodeString = String(data: authorizationCode, encoding: .utf8),
+            let identifyTokenString = String(data: identityToken, encoding: .utf8) {
+            print("authorizationCode: \(authorizationCode)")
+            print("identityToken: \(identityToken)")
+            print("authCodeString: \(authCodeString)")
+            print("identifyTokenString: \(identifyTokenString)")
+        }
+        
         let email = appleIDCredential.email ?? "no email"
         let identityToken = appleIDCredential.identityToken
+        let authorizationCode = appleIDCredential.authorizationCode
+        
         print("DEBUG: Apple userIdentifier \(userIdentifier)")
         print("DEBUG: Apple fullName \(fullName)")
         print("DEBUG: Apple email \(email)")
@@ -62,41 +113,82 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
 //            viewController.present(MainTabBarController(), animated: false)
 //        }
         
-        self.tokenSignIn(idToken: identityToken)
-        self.fetchUserSignUp(idToken: identityToken, logInType: .apple)
+        self.fetchUserSignUp(idToken: identityToken,
+                             logInType: .apple,
+                             email: email,
+                             userName: fullName,
+        authCode: authorizationCode)
     }
-    
-    // 개발 서버에 토큰 전달
-    func tokenSignIn(idToken: Data?) {
-        guard let data = idToken else {
-            print("DEBUG: No ID token for apple login")
-            return
-        }
-        guard let url = URL(string: "https://yourbackend.example.com/tokensignin") else {
-            print("DEBUG: apple sign in url error / https://yourbackend.example.com/tokensignin")
-            return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
-        let task = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
-            // Handle response from your backend.
-        }
-        task.resume()
-    }
-    
-    func fetchUserSignUp(idToken: Data?, logInType: LogInType) {
-        // 차후 유저네임이 required/optional 인지 정해지면 오류처리 수정
-        let idTokenString = idToken?.base64EncodedString() ?? "noAccessCode"
+    func fetchUserSignUp(idToken: Data?, logInType: LogInType, email: String, userName: String, authCode: Data?) {
         
-        let parameters = ["com_type": logInType.rawValue, "access_code": idTokenString]
-        let urlString = NetworkNames.devSignUpApi
+//        let parameters: [String:String] = ["client_id": SystemNames.bundleID,
+//                                           "client_secret": idToken,
+//                          "code": "dd",
+//                          "grant_type": "autorization_code"]
+//        let headerContentType = "application/x-www-form-urlencoded"
+        
+        let userNameQueried = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        // access_code => authorizationCode로 작업시
+        let authorizationCodeAsString = authCode?.base64EncodedString() ?? "noAccessCode"
+        // access_code => idToken으로 작업시
+        let idTokenString = idToken?.base64EncodedString() ?? "noAccessCode"
+
+        let parameters = ["com_type": logInType.rawValue,
+                          "access_code": idTokenString,
+                          "email": email,
+                          "username": userNameQueried]
+        let urlString = NetworkNames.devSignUpSNSApi
         guard let url = URL(string:urlString) else {
             print("DEBUG: incorrect URL for sign up")
             return
         }
-        let request = AF.request(url, method: .post, parameters: parameters, encoding: URLEncoding.default)
+        let request = AF.request(url,
+                                 method: .post,
+                                 parameters: parameters,
+                                 encoding: URLEncoding.default)
+        request.validate(statusCode: 200..<300).responseDecodable(of: UserSignUpModel.self) { response in
+            switch response.result {
+            case .success(let signUpData):
+                print("DEBUG: signUpData \(signUpData)")
+                guard let refreshToken = signUpData.data.first?.refreshToken else {
+                    print("DEBUG: no refresh token")
+                    NotificationCenter.default.post(name: Notification.Name.userLogin, object: nil)
+                    return
+                }
+                print("DEBUG: refreshToken \(refreshToken)")
+                UserDefaults.standard.setValue(refreshToken, forKey: UserDefaultsKey.refreshTokenForApple)
+                UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
+                NotificationCenter.default.post(name: Notification.Name.userLogin, object: nil)
+                // 회원가입 후 바로 로그인 상태로 전환. 회원가입 시에도 리프레시 토큰 나올 것.
+//                self.fetchUserLogIn(email: email, userName: userName, refreshToken: refreshToken, logInType: .kakao)
+                
+            case .failure(let error):
+                print("error: \(error.localizedDescription)")
+                UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.isUserExists)
+            }
+        }
         
+        /*
+        // apple 로그인 시 회원가입/로그인을 구분할 수 없어 이메일/이름값은 항상 옵셔널
+        let userNameQueried = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        
+        let idTokenString = idToken?.base64EncodedString() ?? "noAccessCode"
+        
+        let parameters = ["com_type": logInType.rawValue,
+                          "access_code": idTokenString,
+                          "email": email,
+                          "username": userNameQueried,
+                          "apple_refreshtoken": "dd"]
+        let urlString = NetworkNames.devSignUpSNSApi
+        guard let url = URL(string:urlString) else {
+            print("DEBUG: incorrect URL for sign up")
+            return
+        }
+        let request = AF.request(url,
+                                 method: .post,
+                                 parameters: parameters,
+                                 encoding: URLEncoding.default)
         request.validate(statusCode: 200..<300).responseDecodable(of: UserSignUpModel.self) { response in
             switch response.result {
             case .success(let signUpData):
@@ -116,6 +208,8 @@ extension AppleSignInManager: ASAuthorizationControllerDelegate {
                 UserDefaults.standard.setValue(false, forKey: UserDefaultsKey.isUserExists)
             }
         }
+        
+        */
     }
     
     /*

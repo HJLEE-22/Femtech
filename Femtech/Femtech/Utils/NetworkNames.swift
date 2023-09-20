@@ -19,5 +19,10 @@ public struct NetworkNames {
     static let devLogInApi = "http://3.34.137.105:8080/api/login/?"
     // 네이버 로그인 url
     static let naverLoginApi = "https://openapi.naver.com/v1/nid/me"
-    
+    // sign up for SNS URL
+    static let devSignUpSNSApi = "http://3.34.137.105:8080/api/sns/signup/?"
+    // sign up for Apple
+    static let devSignUpAppleApi = "http://3.34.137.105:8080/api/sns/apple/signup/?"
+    // dfdf
+    static let appleValidateTokenApi = "https://appleid.apple.com/auth/token"
 }

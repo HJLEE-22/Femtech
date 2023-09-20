@@ -40,7 +40,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
           }
         }
         
-        // apple sign in 로그인상태 복원
+        // apple sign in 자동로그인
+        // userID는 키체인에 저장 필요
         // 현재 apple sign in revoke 불가. 우선 주석처리.
         if let user = UserDefaults.standard.string(forKey: UserDefaultsKey.appleUserIdentifier) {
             let appleIDProvider = ASAuthorizationAppleIDProvider()

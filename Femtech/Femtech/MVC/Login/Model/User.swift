@@ -16,15 +16,15 @@ struct UserSignUpModel: Codable {
         var email: String
         var accessToken: String?
         var refreshToken: String?
-        var msg: String?
-        var type: String?
+//        var msg: String?
+//        var type: String?
         
         enum CodingKeys: String, CodingKey {
             case email
             case accessToken
             case refreshToken
-            case msg
-            case type = "com_type"
+//            case msg
+//            case type = "com_type"
         }
         
         init(from decoder: Decoder) throws {
@@ -32,8 +32,8 @@ struct UserSignUpModel: Codable {
             self.email = try container.decode(String.self, forKey: .email)
             self.accessToken = try? container.decode(String.self, forKey: .accessToken)
             self.refreshToken = try? container.decode(String.self, forKey: .refreshToken)
-            self.msg = try? container.decode(String.self, forKey: .msg)
-            self.type = try? container.decode(String.self, forKey: .type)
+//            self.msg = try? container.decode(String.self, forKey: .msg)
+//            self.type = try? container.decode(String.self, forKey: .type)
         }
     }
     enum CodingKeys: String, CodingKey {

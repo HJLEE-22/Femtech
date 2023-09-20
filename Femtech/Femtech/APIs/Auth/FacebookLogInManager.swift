@@ -32,26 +32,43 @@ final class FacebookLogInManager: NSObject {
             fbInstance.sendActions(for: .touchUpInside)
         }
     }
+    
+    func getFBUserData() {
+        if (AccessToken.current != nil) {
+            let req = GraphRequest(graphPath: "me", parameters: ["fields":"id,email,name"], httpMethod: .get)
+            req.start { (connection, result, error) in
+                if let err  = error {
+                    print("facebook get Graph error:\(err)")
+                    return
+                }
+                print("facebook get Graph result: \(String(describing: result))")
+                print("DEBUG: request description \(req.description)")
+            }
+        }
+    }
 }
 
 
 // MARK: - facebook login delegate
 extension FacebookLogInManager: LoginButtonDelegate {
     func loginButton(_ loginButton: FBSDKLoginKit.FBLoginButton, didCompleteWith result: FBSDKLoginKit.LoginManagerLoginResult?, error: Error?) {
-        if let error = error {
+        if let error {
             //self.delegate?.onError(.facebook, error)
             print("DEBUG: \(error)")
         } else {
             if let result = result {
-                let callback = "window.setAccessToken"
                 guard AccessToken.current != nil,
-                      let accessToken: String = AccessToken.current?.tokenString as? String else {
+                      let accessToken = AccessToken.current?.tokenString as? String else {
                     return
                 }
+                
                 // 로그인 완료 후 처리사항
+                
+                
                 UserDefaults.standard.setValue(true, forKey: UserDefaultsKey.isUserExists)
 //                UserDefaults.standard.setValue(fullName, forKey: UserDefaultsKey.userName)
 //                UserDefaults.standard.setValue(email, forKey: UserDefaultsKey.userEmail)
+                
             }
         }
     }
