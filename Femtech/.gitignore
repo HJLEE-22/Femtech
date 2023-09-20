@@ -77,3 +77,4 @@ playground.xcworkspace
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/swift,xcode,cocoapods,macos
+.DS_Store
