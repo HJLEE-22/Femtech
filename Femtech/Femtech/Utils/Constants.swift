@@ -8,6 +8,11 @@
 // 앱 내애서 사용되는 Names와 Keys 관리
 import Foundation
 
+public struct SystemNames {
+    private init () {}
+    static let bundleID = "3F279N36AC.com.qstag.femtech"
+}
+
 public struct UserDefaultsKey {
     private init(){}
     

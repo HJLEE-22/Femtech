@@ -19,7 +19,9 @@ final class NetworkLogInManager: NSObject {
         // 차후 유저네임이 required/optional 인지 정해지면 오류처리 수정
         let userNameQueried = userName.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         
-        let parameters = ["com_type": logInType.rawValue, "email": email, "username": userNameQueried]
+        let parameters = ["com_type": logInType.rawValue,
+                          "email": email,
+                          "username": userNameQueried]
         let urlString = NetworkNames.devSignUpApi
         print("DEBUG: URLString \(urlString)")
         guard let url = URL(string:urlString) else {
@@ -87,4 +89,6 @@ final class NetworkLogInManager: NSObject {
             }
         }
     }
+    
+
 }

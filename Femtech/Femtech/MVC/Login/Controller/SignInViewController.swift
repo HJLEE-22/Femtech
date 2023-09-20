@@ -94,16 +94,53 @@ final class SignInViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func keyboardWillShow(_ noti: NSNotification){
-        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
-            let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
-            self.originViewFrameY = self.view.frame.origin.y
-            self.view.frame.origin.y -= (keyboardHeight)
+    @objc func keyboardWillShow(_ notification: NSNotification){
+//        if let keyboardFrame: NSValue = noti.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+//            let keyboardRectangle = keyboardFrame.cgRectValue
+//            let keyboardHeight = keyboardRectangle.height
+//            self.originViewFrameY = self.view.frame.origin.y
+//            self.view.frame.origin.y -= (keyboardHeight)
+//        }
+        
+        // n is the notification
+//        let d = n.userInfo!
+//        var r = d[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+//        r = self.slidingView.convert(r, from:nil) // <- this is the key move!
+//        let h = self.slidingView.bounds.intersection(r).height
+        
+        let userInfo: NSDictionary = notification.userInfo! as NSDictionary
+        let keyboardFrame: NSValue = userInfo.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue
+        let keyboardRectangle = keyboardFrame.cgRectValue
+        
+//        let userInfo1 = notification.userInfo!
+//        var keyboardFrame1 = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! CGRect
+//        keyboardFrame1 = self.signInView.nameTextField.convert(keyboardFrame1, from: nil)
+//        let interSection = self.signInView.nameTextField.bounds.intersection(keyboardFrame1).height
+//
+//        print("DEBUG:keyboardFrame1 \(keyboardFrame1)")
+//        print("DEBUG: interSection\(interSection)")
+        
+        if self.signInView.nameTextField.isEditing == true {
+            self.keyboardAnimate(keyboardRectangle: keyboardRectangle, textField: self.signInView.nameTextField)
+        }
+        else if self.signInView.emailTextField.isEditing == true {
+            self.keyboardAnimate(keyboardRectangle: keyboardRectangle, textField: self.signInView.emailTextField)
+        }
+        else if self.signInView.passwordTextField.isEditing == true {
+            self.keyboardAnimate(keyboardRectangle: keyboardRectangle, textField: self.signInView.passwordTextField)
+        }
+    }
+    
+    func keyboardAnimate(keyboardRectangle: CGRect ,textField: UITextField){
+//        print("DEBUG:keyboardRectangle \(keyboardRectangle.height)")
+//        print("DEBUG:textField maxY \(textField.frame.maxY)")
+        if keyboardRectangle.height > (self.view.frame.height - textField.frame.maxY){
+            self.view.transform = CGAffineTransform(translationX: 0, y: (self.view.frame.height - keyboardRectangle.height - textField.frame.maxY))
         }
     }
 
-    @objc func keyboardWillHide(_ noti: NSNotification) {
-        self.view.frame.origin.y = originViewFrameY!
+    @objc func keyboardWillHide(_ notification: NSNotification) {
+//        self.view.frame.origin.y = originViewFrameY!
+        self.view.transform = .identity
     }
 }

@@ -21,7 +21,6 @@
 		9B3603302A49651100BE4E0D /* UIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B36032F2A49651100BE4E0D /* UIButton.swift */; };
 		9B39F94D2A5D3C5400F5EF52 /* Pods_Femtech.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 548CC1CED3E9DD8689DB86FF /* Pods_Femtech.framework */; };
 		9B39F9552A5D40EC00F5EF52 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39F9542A5D40EC00F5EF52 /* CalendarView.swift */; };
-		9B39F9572A5D416900F5EF52 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39F9562A5D416900F5EF52 /* CalendarViewController.swift */; };
 		9B39F9592A5E204400F5EF52 /* CalendarNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39F9582A5E204400F5EF52 /* CalendarNavigationController.swift */; };
 		9B39F95B2A5E415200F5EF52 /* CalendarHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39F95A2A5E415200F5EF52 /* CalendarHeaderView.swift */; };
 		9B39F95D2A5F72DB00F5EF52 /* KakaoLogInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B39F95C2A5F72DB00F5EF52 /* KakaoLogInManager.swift */; };
@@ -44,6 +43,14 @@
 		9B8D7D342A4C18F700E0473D /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D332A4C18F700E0473D /* FoodView.swift */; };
 		9B8D7D362A4C1C0400E0473D /* FoodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D352A4C1C0400E0473D /* FoodViewController.swift */; };
 		9B8D7D382A4C1DAF00E0473D /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8D7D372A4C1DAF00E0473D /* FoodCell.swift */; };
+		9BB1F52B2A6600F100C3DC46 /* CustomCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB1F52A2A6600F100C3DC46 /* CustomCalendarViewController.swift */; };
+		9BB1F52D2A660D6400C3DC46 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB1F52C2A660D6400C3DC46 /* String.swift */; };
+		9BB1F52F2A660E3200C3DC46 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB1F52E2A660E3200C3DC46 /* Date.swift */; };
+		9BB1F5312A66107300C3DC46 /* MonthTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB1F5302A66107300C3DC46 /* MonthTitleView.swift */; };
+		9BB1F5332A6612C700C3DC46 /* WeekdayTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB1F5322A6612C700C3DC46 /* WeekdayTitleView.swift */; };
+		9BB1F5352A66139F00C3DC46 /* WeekdayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB1F5342A66139F00C3DC46 /* WeekdayCollectionViewCell.swift */; };
+		9BB1F5372A661C8A00C3DC46 /* FullDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB1F5362A661C8A00C3DC46 /* FullDateCollectionViewCell.swift */; };
+		9BB1F5392A68AFD900C3DC46 /* HalfDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB1F5382A68AFD900C3DC46 /* HalfDateCollectionViewCell.swift */; };
 		9BB9C3122A53B8DE00B930E6 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB9C3112A53B8DE00B930E6 /* User.swift */; };
 		9BB9C3152A54EB5800B930E6 /* AppleSignInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB9C3142A54EB5800B930E6 /* AppleSignInManager.swift */; };
 		9BB9C3242A57A8CF00B930E6 /* NaverLogInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB9C3232A57A8CF00B930E6 /* NaverLogInManager.swift */; };
@@ -108,7 +115,6 @@
 		9B36032A2A49484100BE4E0D /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		9B36032F2A49651100BE4E0D /* UIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButton.swift; sourceTree = "<group>"; };
 		9B39F9542A5D40EC00F5EF52 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		9B39F9562A5D416900F5EF52 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		9B39F9582A5E204400F5EF52 /* CalendarNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNavigationController.swift; sourceTree = "<group>"; };
 		9B39F95A2A5E415200F5EF52 /* CalendarHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeaderView.swift; sourceTree = "<group>"; };
 		9B39F95C2A5F72DB00F5EF52 /* KakaoLogInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLogInManager.swift; sourceTree = "<group>"; };
@@ -131,6 +137,14 @@
 		9B8D7D332A4C18F700E0473D /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 		9B8D7D352A4C1C0400E0473D /* FoodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodViewController.swift; sourceTree = "<group>"; };
 		9B8D7D372A4C1DAF00E0473D /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
+		9BB1F52A2A6600F100C3DC46 /* CustomCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalendarViewController.swift; sourceTree = "<group>"; };
+		9BB1F52C2A660D6400C3DC46 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		9BB1F52E2A660E3200C3DC46 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		9BB1F5302A66107300C3DC46 /* MonthTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthTitleView.swift; sourceTree = "<group>"; };
+		9BB1F5322A6612C700C3DC46 /* WeekdayTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayTitleView.swift; sourceTree = "<group>"; };
+		9BB1F5342A66139F00C3DC46 /* WeekdayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekdayCollectionViewCell.swift; sourceTree = "<group>"; };
+		9BB1F5362A661C8A00C3DC46 /* FullDateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDateCollectionViewCell.swift; sourceTree = "<group>"; };
+		9BB1F5382A68AFD900C3DC46 /* HalfDateCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfDateCollectionViewCell.swift; sourceTree = "<group>"; };
 		9BB9C3112A53B8DE00B930E6 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9BB9C3132A54E5C900B930E6 /* Femtech.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Femtech.entitlements; sourceTree = "<group>"; };
 		9BB9C3142A54EB5800B930E6 /* AppleSignInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleSignInManager.swift; sourceTree = "<group>"; };
@@ -286,6 +300,8 @@
 				9B8D7D2D2A4BB29D00E0473D /* UIViewController.swift */,
 				9BC5485C2A4E77030059701D /* UIImageView.swift */,
 				9BB9C3252A57AD0000B930E6 /* UIApplication.swift */,
+				9BB1F52C2A660D6400C3DC46 /* String.swift */,
+				9BB1F52E2A660E3200C3DC46 /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -303,8 +319,8 @@
 		9B39F9512A5D409400F5EF52 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9B39F9562A5D416900F5EF52 /* CalendarViewController.swift */,
 				9B39F9582A5E204400F5EF52 /* CalendarNavigationController.swift */,
+				9BB1F52A2A6600F100C3DC46 /* CustomCalendarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -314,6 +330,11 @@
 			children = (
 				9B39F9542A5D40EC00F5EF52 /* CalendarView.swift */,
 				9B39F95A2A5E415200F5EF52 /* CalendarHeaderView.swift */,
+				9BB1F5302A66107300C3DC46 /* MonthTitleView.swift */,
+				9BB1F5322A6612C700C3DC46 /* WeekdayTitleView.swift */,
+				9BB1F5342A66139F00C3DC46 /* WeekdayCollectionViewCell.swift */,
+				9BB1F5362A661C8A00C3DC46 /* FullDateCollectionViewCell.swift */,
+				9BB1F5382A68AFD900C3DC46 /* HalfDateCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -813,6 +834,7 @@
 				9BC548682A4E9DBE0059701D /* SettingNavigationController.swift in Sources */,
 				9BB9C32A2A57EABA00B930E6 /* FacebookLogInManager.swift in Sources */,
 				9B8D7D1C2A4AB35500E0473D /* Constants.swift in Sources */,
+				9BB1F52B2A6600F100C3DC46 /* CustomCalendarViewController.swift in Sources */,
 				9B39F95B2A5E415200F5EF52 /* CalendarHeaderView.swift in Sources */,
 				9BC548552A4D4D7C0059701D /* SubNavigationView.swift in Sources */,
 				9B8D7D242A4ACBB200E0473D /* HomeView.swift in Sources */,
@@ -823,8 +845,9 @@
 				9B39F95F2A5FD0DC00F5EF52 /* NetworkLogInManager.swift in Sources */,
 				9BB9C3262A57AD0000B930E6 /* UIApplication.swift in Sources */,
 				9BC5484F2A4D1AE60059701D /* OnlyTableViewController.swift in Sources */,
+				9BB1F5372A661C8A00C3DC46 /* FullDateCollectionViewCell.swift in Sources */,
 				9B39F9552A5D40EC00F5EF52 /* CalendarView.swift in Sources */,
-				9B39F9572A5D416900F5EF52 /* CalendarViewController.swift in Sources */,
+				9BB1F52D2A660D6400C3DC46 /* String.swift in Sources */,
 				9B8D7D182A4AA8EC00E0473D /* SigninView.swift in Sources */,
 				9BC548572A4D55780059701D /* TouchableOpacityView.swift in Sources */,
 				9BC548642A4E9C050059701D /* SetingViewController.swift in Sources */,
@@ -837,13 +860,16 @@
 				9B1B6FB02A43B72200E1EC53 /* AppDelegate.swift in Sources */,
 				9B8D7D2C2A4AD1A300E0473D /* SampleView.swift in Sources */,
 				9B36032B2A49484100BE4E0D /* LoginView.swift in Sources */,
+				9BB1F52F2A660E3200C3DC46 /* Date.swift in Sources */,
 				9BC5485D2A4E77030059701D /* UIImageView.swift in Sources */,
 				9B8D7D302A4BF7F700E0473D /* HomeNavigationController.swift in Sources */,
 				9B8D7D162A4AA8A100E0473D /* SignInViewController.swift in Sources */,
 				9B39F9592A5E204400F5EF52 /* CalendarNavigationController.swift in Sources */,
+				9BB1F5332A6612C700C3DC46 /* WeekdayTitleView.swift in Sources */,
 				9B8D7D2A2A4AD0ED00E0473D /* SampleViewController.swift in Sources */,
 				9BC5484D2A4D04510059701D /* FoodDataManager.swift in Sources */,
 				9BC548592A4D559A0059701D /* OpacityTapGestureRecognizer.swift in Sources */,
+				9BB1F5312A66107300C3DC46 /* MonthTitleView.swift in Sources */,
 				9B8D7D0A2A4A6BA200E0473D /* LaunchScreenViewController.swift in Sources */,
 				9B1B6FB22A43B72200E1EC53 /* SceneDelegate.swift in Sources */,
 				9BB9C3152A54EB5800B930E6 /* AppleSignInManager.swift in Sources */,
@@ -851,6 +877,8 @@
 				9BC548512A4D1B6F0059701D /* OnlyTableView.swift in Sources */,
 				9B8D7D142A4AA17600E0473D /* LoginNavigationController.swift in Sources */,
 				9BB9C3122A53B8DE00B930E6 /* User.swift in Sources */,
+				9BB1F5392A68AFD900C3DC46 /* HalfDateCollectionViewCell.swift in Sources */,
+				9BB1F5352A66139F00C3DC46 /* WeekdayCollectionViewCell.swift in Sources */,
 				9BB9C3282A57D26500B930E6 /* NaverLoginModel.swift in Sources */,
 				9B8D7D1A2A4AAAFB00E0473D /* UIColor.swift in Sources */,
 				9B8D7D2E2A4BB29D00E0473D /* UIViewController.swift in Sources */,
