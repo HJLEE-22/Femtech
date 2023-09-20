@@ -6,6 +6,7 @@
 //
 
 import SnapKit
+import CoreLocation
 
 final class CustomCalendarViewController: UIViewController {
     
@@ -31,6 +32,11 @@ final class CustomCalendarViewController: UIViewController {
     private var firstWeekdayOfPreviousMonth: Int = 0
     private var firstWeekdayOfPresentedMonth: Int = 0
     private var firstWeekdayOfNextMonth: Int = 0
+    
+        // MARK: - 위치정보 관련
+    private let locationManager = CLLocationManager()
+    private var locationCoordinate = CLLocationCoordinate2D()
+    private var geocoder = CLGeocoder()
     
         // MARK: - UI 관련
     private lazy var tabbarHeight = tabBarController?.tabBar.frame.height
@@ -143,6 +149,8 @@ final class CustomCalendarViewController: UIViewController {
         self.setLayout()
         self.loadDates(date: YearAndMonth(year: self.currentYear, month: self.currentMonth))
         self.view.addGestureRecognizer(self.scopeGesture)
+        self.setLocationManager()
+        self.checkUserDeviceLocationServiceAuthorization()
     }
     
     // MARK: - Helpers
@@ -212,6 +220,45 @@ final class CustomCalendarViewController: UIViewController {
         let secondXPosition = self.view.frame.width * CGFloat(1)
         self.calendarScrollView.setContentOffset(CGPoint(x: secondXPosition, y: 0), animated: false)
     }
+    
+        // MARK: - location 관련
+    private func setLocationManager() {
+        self.locationManager.delegate = self
+    }
+    
+    private func checkUserDeviceLocationServiceAuthorization() {
+        DispatchQueue.global().async {
+            guard CLLocationManager.locationServicesEnabled() else {
+                DispatchQueue.main.async {
+                    self.showAlert("위치 정보 이용", "위치 서비스를 사용할 수 없습니다.\n디바이스의 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요.", self.goSetting)
+                }
+                return
+            }
+            let locationAuthorizationStatus: CLAuthorizationStatus = self.locationManager.authorizationStatus
+            self.checkUserCurrentLocationAuthorization(locationAuthorizationStatus)
+        }
+    }
+    
+    private func checkUserCurrentLocationAuthorization(_ status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.requestWhenInUseAuthorization()
+        case .denied, .restricted:
+            self.showAlert("위치 정보 이용", "위치 서비스를 사용할 수 없습니다.\n디바이스의 '설정 > 개인정보 보호'에서 위치 서비스를 켜주세요.", self.goSetting)
+        case .authorizedWhenInUse:
+            self.locationManager.startUpdatingLocation()
+        default:
+            break
+        }
+    }
+    
+    @objc func goSetting() {
+        if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(appSetting)
+        }
+    }
+
     
         // MARK: - UI 기본 세팅
     private func setValue() {
@@ -437,4 +484,38 @@ extension CustomCalendarViewController: UIGestureRecognizerDelegate {
     
 }
 
+
+// MARK: - Location Extentions
+extension CustomCalendarViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let coordinate = locations.last?.coordinate {
+            // 위치정보 사용
+            print("DEBUG: coordinate \(coordinate)")
+            let location = CLLocation(latitude: coordinate.latitude,
+                                      longitude: coordinate.longitude)
+            geocoder.reverseGeocodeLocation(location) { placemarks, error in
+                if let error {
+                    print("DEBUG: \(error)")
+                    return
+                }
+                guard let placemarks,
+                      let placemark = placemarks.last else {
+                    print("DEBUG: no placemark or no placemark last")
+                    return
+                }
+                print("DEBUG: placemark \(placemark),administrativeArea \(placemark.administrativeArea)")
+            }
+        }
+        self.locationManager.stopUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("DEBUG: Location load failed")
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        self.checkUserDeviceLocationServiceAuthorization()
+    }
+}
 
