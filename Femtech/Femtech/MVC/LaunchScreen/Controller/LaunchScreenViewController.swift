@@ -65,7 +65,8 @@ final class LaunchScreenViewController: UIViewController {
 
     private func addAnimation() {
         self.animationView.play { _ in
-            UIView.animate(withDuration: 0.3, animations: { self.animationView.alpha = 0 }) { _ in
+            UIView.animate(withDuration: 0.3,
+                           animations: { self.animationView.alpha = 0 }) { _ in
                 self.animationView.isHidden = true
                 self.animationView.removeFromSuperview()
                 NotificationCenter.default.post(name: Notification.Name.userLogin, object: nil)

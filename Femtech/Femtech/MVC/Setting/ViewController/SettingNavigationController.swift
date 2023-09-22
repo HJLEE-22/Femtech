@@ -54,7 +54,7 @@ final class SettingNavigationController: UINavigationController {
         navigationBar.isTranslucent = true
         
         /// navigationItem의 버튼 색상 지정
-        navigationBar.tintColor = UIColor.systemGray5
+        navigationBar.tintColor = UIColor.systemGray
     }
 
     // NavigationBar의 ShadowImage 적용을 위해 UIColor를 UIImage로 변경
