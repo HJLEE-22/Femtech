@@ -92,7 +92,7 @@ final class LaunchScreenViewController: UIViewController {
     }
     private func selectNavigationController(navigationType: NaviType) {
         if navigationType == .home {
-            self.present(MainTabBarController(), animated: false)
+            self.view.window?.rootViewController = MainTabBarController()
         } else if navigationType == .login {
             let navigation = LoginNavigationController(rootViewController: LoginViewController())
             navigation.modalPresentationStyle = .fullScreen
