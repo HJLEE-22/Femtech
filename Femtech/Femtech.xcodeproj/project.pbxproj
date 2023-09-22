@@ -9,6 +9,27 @@
 /* Begin PBXBuildFile section */
 		1D0B3F182429CA2247A61659 /* Pods_Femtech_FemtechUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6C55E5337A56B16848E202E /* Pods_Femtech_FemtechUITests.framework */; };
 		94136252283E68EACA9C39B1 /* Pods_FemtechTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7530B21C5396BEDD4F8A4BFC /* Pods_FemtechTests.framework */; };
+		9B0A23122ABBC0C200F9430B /* PDFViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23112ABBC0C200F9430B /* PDFViewerView.swift */; };
+		9B0A23132ABBC0C200F9430B /* PDFViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23112ABBC0C200F9430B /* PDFViewerView.swift */; };
+		9B0A23142ABBC0C200F9430B /* PDFViewerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23112ABBC0C200F9430B /* PDFViewerView.swift */; };
+		9B0A23162ABBD05600F9430B /* PDFViewerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23152ABBD05600F9430B /* PDFViewerNavigationController.swift */; };
+		9B0A23172ABBD05600F9430B /* PDFViewerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23152ABBD05600F9430B /* PDFViewerNavigationController.swift */; };
+		9B0A23182ABBD05600F9430B /* PDFViewerNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23152ABBD05600F9430B /* PDFViewerNavigationController.swift */; };
+		9B0A231A2ABBD09C00F9430B /* PDFViewerMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23192ABBD09C00F9430B /* PDFViewerMainController.swift */; };
+		9B0A231B2ABBD09C00F9430B /* PDFViewerMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23192ABBD09C00F9430B /* PDFViewerMainController.swift */; };
+		9B0A231C2ABBD09C00F9430B /* PDFViewerMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23192ABBD09C00F9430B /* PDFViewerMainController.swift */; };
+		9B0A231E2ABBD7D000F9430B /* PDFViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A231D2ABBD7D000F9430B /* PDFViewerController.swift */; };
+		9B0A231F2ABBD7D000F9430B /* PDFViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A231D2ABBD7D000F9430B /* PDFViewerController.swift */; };
+		9B0A23202ABBD7D000F9430B /* PDFViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A231D2ABBD7D000F9430B /* PDFViewerController.swift */; };
+		9B0A23362ABBF28000F9430B /* SignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23352ABBF28000F9430B /* SignViewController.swift */; };
+		9B0A23372ABBF28000F9430B /* SignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23352ABBF28000F9430B /* SignViewController.swift */; };
+		9B0A23382ABBF28000F9430B /* SignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23352ABBF28000F9430B /* SignViewController.swift */; };
+		9B0A233A2ABBF2D600F9430B /* SignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23392ABBF2D600F9430B /* SignView.swift */; };
+		9B0A233B2ABBF2D600F9430B /* SignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23392ABBF2D600F9430B /* SignView.swift */; };
+		9B0A233C2ABBF2D600F9430B /* SignView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A23392ABBF2D600F9430B /* SignView.swift */; };
+		9B0A233E2ABD137300F9430B /* WatermarkPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A233D2ABD137300F9430B /* WatermarkPage.swift */; };
+		9B0A233F2ABD137300F9430B /* WatermarkPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A233D2ABD137300F9430B /* WatermarkPage.swift */; };
+		9B0A23402ABD137300F9430B /* WatermarkPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0A233D2ABD137300F9430B /* WatermarkPage.swift */; };
 		9B1B6FB02A43B72200E1EC53 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6FAF2A43B72200E1EC53 /* AppDelegate.swift */; };
 		9B1B6FB22A43B72200E1EC53 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6FB12A43B72200E1EC53 /* SceneDelegate.swift */; };
 		9B1B6FB42A43B72200E1EC53 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1B6FB32A43B72200E1EC53 /* LoginViewController.swift */; };
@@ -100,6 +121,13 @@
 		72DB60BC190E4D1A745286E3 /* Pods-FemtechTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FemtechTests.debug.xcconfig"; path = "Target Support Files/Pods-FemtechTests/Pods-FemtechTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7530B21C5396BEDD4F8A4BFC /* Pods_FemtechTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FemtechTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96558339F186B397CF792C4F /* Pods-Femtech.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Femtech.debug.xcconfig"; path = "Target Support Files/Pods-Femtech/Pods-Femtech.debug.xcconfig"; sourceTree = "<group>"; };
+		9B0A23112ABBC0C200F9430B /* PDFViewerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewerView.swift; sourceTree = "<group>"; };
+		9B0A23152ABBD05600F9430B /* PDFViewerNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewerNavigationController.swift; sourceTree = "<group>"; };
+		9B0A23192ABBD09C00F9430B /* PDFViewerMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewerMainController.swift; sourceTree = "<group>"; };
+		9B0A231D2ABBD7D000F9430B /* PDFViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewerController.swift; sourceTree = "<group>"; };
+		9B0A23352ABBF28000F9430B /* SignViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignViewController.swift; sourceTree = "<group>"; };
+		9B0A23392ABBF2D600F9430B /* SignView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignView.swift; sourceTree = "<group>"; };
+		9B0A233D2ABD137300F9430B /* WatermarkPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatermarkPage.swift; sourceTree = "<group>"; };
 		9B1B6FAC2A43B72200E1EC53 /* Femtech.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Femtech.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B1B6FAF2A43B72200E1EC53 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B1B6FB12A43B72200E1EC53 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -217,6 +245,44 @@
 				5AB5AE56629E42702782AE73 /* Pods-FemtechTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		9B0A230D2ABBC07800F9430B /* PDFViewer */ = {
+			isa = PBXGroup;
+			children = (
+				9B0A230E2ABBC08500F9430B /* Model */,
+				9B0A23102ABBC08F00F9430B /* View */,
+				9B0A230F2ABBC08E00F9430B /* Controller */,
+			);
+			path = PDFViewer;
+			sourceTree = "<group>";
+		};
+		9B0A230E2ABBC08500F9430B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9B0A233D2ABD137300F9430B /* WatermarkPage.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9B0A230F2ABBC08E00F9430B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9B0A23152ABBD05600F9430B /* PDFViewerNavigationController.swift */,
+				9B0A23192ABBD09C00F9430B /* PDFViewerMainController.swift */,
+				9B0A231D2ABBD7D000F9430B /* PDFViewerController.swift */,
+				9B0A23352ABBF28000F9430B /* SignViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9B0A23102ABBC08F00F9430B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9B0A23112ABBC0C200F9430B /* PDFViewerView.swift */,
+				9B0A23392ABBF2D600F9430B /* SignView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		9B1B6FA32A43B72200E1EC53 = {
@@ -386,6 +452,7 @@
 		9B8D7D052A4A6AA100E0473D /* MVC */ = {
 			isa = PBXGroup;
 			children = (
+				9B0A230D2ABBC07800F9430B /* PDFViewer */,
 				9B8D7D072A4A6AAF00E0473D /* LaunchScreen */,
 				9B8D7D062A4A6AAB00E0473D /* Login */,
 				9B8D7D1D2A4ACAD700E0473D /* Home */,
@@ -830,11 +897,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B3603302A49651100BE4E0D /* UIButton.swift in Sources */,
+				9B0A233A2ABBF2D600F9430B /* SignView.swift in Sources */,
 				9BB9C3242A57A8CF00B930E6 /* NaverLogInManager.swift in Sources */,
 				9BC548682A4E9DBE0059701D /* SettingNavigationController.swift in Sources */,
 				9BB9C32A2A57EABA00B930E6 /* FacebookLogInManager.swift in Sources */,
 				9B8D7D1C2A4AB35500E0473D /* Constants.swift in Sources */,
+				9B0A23362ABBF28000F9430B /* SignViewController.swift in Sources */,
 				9BB1F52B2A6600F100C3DC46 /* CustomCalendarViewController.swift in Sources */,
+				9B0A23162ABBD05600F9430B /* PDFViewerNavigationController.swift in Sources */,
 				9B39F95B2A5E415200F5EF52 /* CalendarHeaderView.swift in Sources */,
 				9BC548552A4D4D7C0059701D /* SubNavigationView.swift in Sources */,
 				9B8D7D242A4ACBB200E0473D /* HomeView.swift in Sources */,
@@ -850,6 +920,7 @@
 				9BB1F52D2A660D6400C3DC46 /* String.swift in Sources */,
 				9B8D7D182A4AA8EC00E0473D /* SigninView.swift in Sources */,
 				9BC548572A4D55780059701D /* TouchableOpacityView.swift in Sources */,
+				9B0A233E2ABD137300F9430B /* WatermarkPage.swift in Sources */,
 				9BC548642A4E9C050059701D /* SetingViewController.swift in Sources */,
 				9BC5485B2A4D56290059701D /* SubNavigationCell.swift in Sources */,
 				9B8D7D342A4C18F700E0473D /* FoodView.swift in Sources */,
@@ -859,6 +930,7 @@
 				9BC5486A2A4EA03E0059701D /* MainTabBarController.swift in Sources */,
 				9B1B6FB02A43B72200E1EC53 /* AppDelegate.swift in Sources */,
 				9B8D7D2C2A4AD1A300E0473D /* SampleView.swift in Sources */,
+				9B0A231A2ABBD09C00F9430B /* PDFViewerMainController.swift in Sources */,
 				9B36032B2A49484100BE4E0D /* LoginView.swift in Sources */,
 				9BB1F52F2A660E3200C3DC46 /* Date.swift in Sources */,
 				9BC5485D2A4E77030059701D /* UIImageView.swift in Sources */,
@@ -880,6 +952,8 @@
 				9BB1F5392A68AFD900C3DC46 /* HalfDateCollectionViewCell.swift in Sources */,
 				9BB1F5352A66139F00C3DC46 /* WeekdayCollectionViewCell.swift in Sources */,
 				9BB9C3282A57D26500B930E6 /* NaverLoginModel.swift in Sources */,
+				9B0A23122ABBC0C200F9430B /* PDFViewerView.swift in Sources */,
+				9B0A231E2ABBD7D000F9430B /* PDFViewerController.swift in Sources */,
 				9B8D7D1A2A4AAAFB00E0473D /* UIColor.swift in Sources */,
 				9B8D7D2E2A4BB29D00E0473D /* UIViewController.swift in Sources */,
 				9B8D7D222A4ACB7300E0473D /* HomeViewController.swift in Sources */,
@@ -890,7 +964,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B0A23372ABBF28000F9430B /* SignViewController.swift in Sources */,
+				9B0A233F2ABD137300F9430B /* WatermarkPage.swift in Sources */,
+				9B0A23172ABBD05600F9430B /* PDFViewerNavigationController.swift in Sources */,
+				9B0A233B2ABBF2D600F9430B /* SignView.swift in Sources */,
+				9B0A231B2ABBD09C00F9430B /* PDFViewerMainController.swift in Sources */,
 				9B1B6FC72A43B72600E1EC53 /* FemtechTests.swift in Sources */,
+				9B0A231F2ABBD7D000F9430B /* PDFViewerController.swift in Sources */,
+				9B0A23132ABBC0C200F9430B /* PDFViewerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,8 +979,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B0A23382ABBF28000F9430B /* SignViewController.swift in Sources */,
+				9B0A23202ABBD7D000F9430B /* PDFViewerController.swift in Sources */,
+				9B0A23142ABBC0C200F9430B /* PDFViewerView.swift in Sources */,
 				9B1B6FD12A43B72600E1EC53 /* FemtechUITests.swift in Sources */,
+				9B0A23182ABBD05600F9430B /* PDFViewerNavigationController.swift in Sources */,
+				9B0A233C2ABBF2D600F9430B /* SignView.swift in Sources */,
+				9B0A231C2ABBD09C00F9430B /* PDFViewerMainController.swift in Sources */,
 				9B1B6FD32A43B72600E1EC53 /* FemtechUITestsLaunchTests.swift in Sources */,
+				9B0A23402ABD137300F9430B /* WatermarkPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

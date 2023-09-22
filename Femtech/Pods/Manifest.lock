@@ -42,6 +42,7 @@ PODS:
   - lottie-ios (4.2.0)
   - naveridlogin-sdk-ios (4.1.6)
   - SnapKit (5.6.0)
+  - TouchDraw (2.1.2)
 
 DEPENDENCIES:
   - Alamofire (~> 5.6.4)
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - lottie-ios (~> 4.2.0)
   - naveridlogin-sdk-ios (~> 4.1.5)
   - SnapKit (~> 5.6.0)
+  - TouchDraw (~> 2.1)
 
 SPEC REPOS:
   trunk:
@@ -76,6 +78,7 @@ SPEC REPOS:
     - lottie-ios
     - naveridlogin-sdk-ios
     - SnapKit
+    - TouchDraw
 
 SPEC CHECKSUMS:
   Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
@@ -96,7 +99,8 @@ SPEC CHECKSUMS:
   lottie-ios: 809ecf2d460ed650a6aed7aa88b2ec45fab4779c
   naveridlogin-sdk-ios: cdd34e3585a3d5aaf37c1d84c1f41faba4a25d1a
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  TouchDraw: 80b52af0e29354473205ffb478c881683d770475
 
-PODFILE CHECKSUM: 474134824c3e8f0a73410aaac3664b2b6db4313e
+PODFILE CHECKSUM: b699b068f1d9629012bd587a2826677528b6b669
 
 COCOAPODS: 1.12.1

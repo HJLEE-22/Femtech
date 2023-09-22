@@ -18,6 +18,8 @@ target 'Femtech' do
     pod 'KakaoSDKAuth', '~> 2.14.0'
     pod 'KakaoSDKUser', '~> 2.14.0'
     pod 'KakaoSDKShare', '~> 2.14.0'
+    pod 'TouchDraw', '~> 2.1'
+ 
 
   target 'FemtechTests' do
     inherit! :search_paths
