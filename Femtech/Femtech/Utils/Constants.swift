@@ -43,6 +43,8 @@ public struct IconNames {
     static let textAlignLeft = "text.alignleft"
     static let arrowTriangleDownFill = "arrowtriangle.down.fill"
     static let magnifyingGlass = "magnifyingglass"
+    static let docCircle = "doc.circle"
+    static let docCircleFill = "doc.circle.fill"
 }
 
 extension Notification.Name {
